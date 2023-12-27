@@ -24,6 +24,18 @@ const addUserFirestore = async (userCredential, name, cpf, phone, birthDate, est
     
 }
 
+    const addLancheFirestore = async ( nomeProduto, valor, descrição, imagem ) =>{
+
+        const data = {
+            productName : nomeProduto,
+            value : valor,
+            description : descrição,
+            image : imagem
+        }
+        console.log(data)
+        return await addDoc(collection(db, "produtos"), data);
+    }
+
 const getPerfilFromUid = async (uid) => {
     const docRef = doc(db, "usuarios", uid);
     const docSnap = await getDoc(docRef);
@@ -36,6 +48,6 @@ const getPerfilFromUid = async (uid) => {
 
 
 //EXPORTA AS FUNCOES
-export {addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage}
+export {addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore}
 
 //CRIAR ALUNO, LISTA DE ALUNOS TOCA E VE QNT DEVE AUMENTA OK E ATUALIZA NO BANCO DE DADOS DEIXAR CARDAPIO PRA DEPOIS

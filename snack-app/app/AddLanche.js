@@ -7,13 +7,23 @@ import * as imagePicker from 'expo-image-picker';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { storage, db, getStorage } from "../connections_leticia/firebase-store";
+import { addLancheFirestore } from '../connections_leticia/firebase-store';
 
 export default function AddLanche() {
     const [image, setImage] = useState('https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg')
     const [url, setUrl] = useState("");
 
+    const [nomeProduto, setNomeProduto] = useState('');
+    const [valor, setValor] = useState('');
+    const [descrição, setDescrição] = useState('');
+    const [imagem, setImagem] = useState('');
+
+    const tryCreateProduct = async () => {
+        addLancheFirestore(nomeProduto, valor, descrição, imagem);
+    }
 
     const handleImagePicker = async () => {
+        console.log('a')
         const result = await imagePicker.launchImageLibraryAsync({
             mediaTypes: imagePicker.MediaTypeOptions.Images,
             aspect: [4, 4],
@@ -23,7 +33,9 @@ export default function AddLanche() {
         });
 
         if (!result.canceled) {
+            console.log('b')
             setImage(result.assets[0].uri);
+            console.log('c')
             await uploadImage(result.assets[0].uri, "image")
         }
     };
@@ -31,16 +43,23 @@ export default function AddLanche() {
         const response = await fetch(uri);
         const blob = await response.blob();
         const storageRef = ref(storage, "Stuff/" + new Date().getTime());
-        const uploadTask = uploadBytesResumable(storageRef, blob);
-        uploadTask.on(
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                    console.log("Arquivo disponível em", downloadURL);
-                    await saveRecord(fileType, downloadURL, new Date().toISOString());
-                    setImage("");
-                });
-            }
-        );
+        setImagem(storageRef.fullPath)
+
+        const uploadTask = await uploadBytesResumable(storageRef, blob);
+        
+        
+        // uploadTask.on(
+        //     async () => {
+        //         console.log('6')
+        //         await getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+        //             console.log("Arquivo disponível em", downloadURL);
+        //             await saveRecord(fileType, downloadURL, new Date().toISOString());
+        //             setImage("");
+        //         });
+        //     }
+        // );
+        console.log('7',storageRef.fullPath)
+
     }
 
     async function saveRecord(fileType, url, createdAt) {
@@ -66,13 +85,13 @@ export default function AddLanche() {
             <ScrollView style={styles.meio}>
 
                 <Text style={styles.txt}>Nome do produto</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} text={nomeProduto} onChangeText={(text) => setNomeProduto(text)}/>
 
                 <Text style={styles.txt}>Valor</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} text={valor} onChangeText={(text) => setValor(text)}/>
 
                 <Text style={styles.txt}>Descrição</Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} text={descrição} onChangeText={(text) => setDescrição(text)}/>
 
                 <TouchableOpacity style={styles.botao} onPress={handleImagePicker}>
                     <AntDesign name="pluscircleo" size={20} marginRight={10} />
@@ -81,7 +100,7 @@ export default function AddLanche() {
                 <View style={styles.imagem}>
                     <Image source={{ uri: image }} style={{ width: 190, height: 190 }} />
                 </View>
-                <TouchableOpacity style={styles.botaoSave}>
+                <TouchableOpacity style={styles.botaoSave} onPress={tryCreateProduct}>
                     <Text style={{color:'white'}}>SALVAR LANCHE</Text>
                 </TouchableOpacity>
             </ScrollView>
