@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { useNavigation, useRouter } from 'expo-router';
+import { useNavigation} from 'expo-router';
 import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
+import Lanchinhos from '../components/Lanchinhos';
 
-export default function Cardapio() {
+export default function Pagamento() {
     const nav = useNavigation();
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
@@ -20,22 +21,17 @@ export default function Cardapio() {
                     <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('Casa')} />
                 </TO>
                 <Text style={styles.topHome}></Text>
-
                 <TO style={styles.user}>
                     <AntDesign name={'shoppingcart'} size={30} color='white'/>
                 </TO>
                 <TO style={styles.userr}>
-                    <Icon name={'user'} size={25} color='white' onPress={() => nav.navigate('Perfil')} />
+                    <Icon name={'user'} size={25} color='white' onPress={() => nav.navigate('Perfil')}/>
                 </TO>
-                
             </View>
 
             <View style={styles.meio}>
-                <ScrollView>
-                    <TO style={styles.addLanche} onPress={()=> nav.navigate('Lanche')}>
-                        <AntDesign name={'pluscircleo'} size={30} color='white'/>
-                        <Text style={styles.addLancheText}> ADICIONAR LANCHES </Text>
-                    </TO>
+                <ScrollView >
+                    <Lanchinhos/>
                 </ScrollView>
             </View>
 
@@ -43,10 +39,10 @@ export default function Cardapio() {
                 <TO style={styles.casa} onPress={() => nav.navigate('Casa')}>
                     <SimpleLineIcons name={'home'} size={30} color='white' />
                 </TO>
-                <TO style={styles.menu} >
+                <TO style={styles.menu} onPress={() => nav.navigate('Cardapio')}>
                     <Ionicons name={'fast-food-outline'} size={30} color='white' />
                 </TO>
-                <TO style={styles.dinheiro} onPress={() => nav.navigate('Pagamento')}>
+                <TO style={styles.dinheiro} >
                     <FontAwesome name={'dollar'} size={30} color='white' />
                 </TO>
                 <TO style={styles.feedback} onPress={() => nav.navigate('Feedback')}>
@@ -69,7 +65,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         backgroundColor: '#6D458B',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     meio: {
         width: '100%',
@@ -77,7 +73,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#011837',
-
+        paddingTop: 80,
     },
 
     inferior: {
@@ -104,27 +100,10 @@ const styles = StyleSheet.create({
     user:{
         paddingLeft: 203.4,
         marginTop: 10,
-        marginRight: 15,
-        
+        marginRight: 15
     },
     userr:{
         marginTop: 10
     },
-    addLanche:{
-        backgroundColor: '#6D458B',
-        width: 250,
-        height: 50,
-        borderRadius: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        marginTop: 280
-    },
-    addLancheText:{
-        fontFamily: 'Montserrat-Regular',
-        fontSize: 15,
-        color: 'white',
-        paddingLeft: 10
-    },
-    
+
 });

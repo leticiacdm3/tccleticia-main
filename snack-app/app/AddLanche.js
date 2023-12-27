@@ -19,11 +19,11 @@ export default function AddLanche() {
     const [imagem, setImagem] = useState('');
 
     const tryCreateProduct = async () => {
-        addLancheFirestore(nomeProduto, valor, descrição, imagem);
+       await addLancheFirestore(nomeProduto, valor, descrição, imagem);
+       nav.navigate('Cardapio')
     }
 
     const handleImagePicker = async () => {
-        console.log('a')
         const result = await imagePicker.launchImageLibraryAsync({
             mediaTypes: imagePicker.MediaTypeOptions.Images,
             aspect: [4, 4],
@@ -33,9 +33,7 @@ export default function AddLanche() {
         });
 
         if (!result.canceled) {
-            console.log('b')
             setImage(result.assets[0].uri);
-            console.log('c')
             await uploadImage(result.assets[0].uri, "image")
         }
     };
@@ -46,8 +44,6 @@ export default function AddLanche() {
         setImagem(storageRef.fullPath)
 
         const uploadTask = await uploadBytesResumable(storageRef, blob);
-        
-        
         // uploadTask.on(
         //     async () => {
         //         console.log('6')
@@ -88,7 +84,7 @@ export default function AddLanche() {
                 <TextInput style={styles.input} text={nomeProduto} onChangeText={(text) => setNomeProduto(text)}/>
 
                 <Text style={styles.txt}>Valor</Text>
-                <TextInput style={styles.input} text={valor} onChangeText={(text) => setValor(text)}/>
+                <TextInput style={styles.input} text={valor} onChangeText={(text) => setValor(text)} keyboardType="numeric"/>
 
                 <Text style={styles.txt}>Descrição</Text>
                 <TextInput style={styles.input} text={descrição} onChangeText={(text) => setDescrição(text)}/>
