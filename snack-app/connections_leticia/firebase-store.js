@@ -46,8 +46,18 @@ const getPerfilFromUid = async (uid) => {
     }
 }
 
+const getLancheFromUid = async (uid) => {
+    const docRef = doc(db, "produtos", uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        return docSnap.data();
+    } else {
+        return null;
+    }
+}
+
 
 //EXPORTA AS FUNCOES
-export {addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore}
+export {addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore, getLancheFromUid}
 
 //CRIAR ALUNO, LISTA DE ALUNOS TOCA E VE QNT DEVE AUMENTA OK E ATUALIZA NO BANCO DE DADOS DEIXAR CARDAPIO PRA DEPOIS

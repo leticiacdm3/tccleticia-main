@@ -1,6 +1,9 @@
-import { StyleSheet, View, Text, Image } from 'react-native';
-export default (props) => {
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import {FontAwesome5} from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
+export default (props) => {
+    
     return (
         <View style={styles.container}>
             <View style={styles.vImg}>
@@ -12,10 +15,13 @@ export default (props) => {
             <View style={styles.vTxt}>
                 <Text style={styles.textFood}>Bolo de Chocolate</Text>
                 <Text style={styles.moneyText}>R$5,00</Text>
+                
             </View>
 
-            <View styles={styles.carrinho}>
-
+            <View style={styles.carrinho}>
+                <TouchableOpacity>
+                <FontAwesome5 name={'trash-alt'} size={25} color='white' />
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -53,13 +59,15 @@ const styles = StyleSheet.create({
     vTxt: {
         alignSelf: 'center',
         marginLeft: 20,
+        marginRight: 70,
     },
     vImg: {
         marginTop: 16,
-        marginLeft: -120,
         alignSelf: 'left'
     },
     carrinho:{
+        alignSelf: 'center',
+        
         
     }
 

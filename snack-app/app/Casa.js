@@ -4,9 +4,23 @@ import { useNavigation } from 'expo-router';
 import { SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
+import { EventRegister } from 'react-native-event-listeners';
+import React, { useEffect} from 'react';
 
 export default function Home() {
     const nav = useNavigation();
+
+    const [darkMode, setDarkMode] = useState(false);
+
+    useEffect(() => {
+        const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
+            setDarkMode(data);
+            console.log(data);
+        });
+        return () => {
+            EventRegister.removeAllListeners(listener);
+        }
+    }, [darkMode])
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
@@ -16,9 +30,7 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <View style={styles.superior}>
-                <TO style={styles.voltar}>
-                    <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('entrar')} />
-                </TO>
+                
                 <Text style={styles.topHome}>HOME</Text>
                 <TO style={styles.user}>
                     <AntDesign name={'shoppingcart'} size={30} color='white'/>
@@ -91,7 +103,7 @@ const styles = StyleSheet.create({
     topHome:{
         fontFamily: 'Montserrat-Regular',
         fontSize: 30,
-        paddingLeft: 120,
+        paddingLeft: 160,
         color: 'white',
         marginTop: 10
     },
