@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch, useColorScheme } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from 'expo-router';
 import { SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
@@ -15,7 +15,6 @@ export default function Home() {
         language: 'Português',
     });
     const [darkMode, setDarkMode] = useState(false);
-
     const nav = useNavigation();
     const SECTIONS = [
         {
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#011837',
+        backgroundColor:'#011837' ,
     },
 
     inferior: {
