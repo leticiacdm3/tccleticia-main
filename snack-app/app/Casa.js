@@ -4,7 +4,7 @@ import { useNavigation } from 'expo-router';
 import { SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useState, useEffect } from 'react';
-import { Container, Name, Description, Meio, Superior, Inferior, TopHome, User, Userr } from '../components/styles.js';
+import { Container, Name, Description, Meio, Superior, Inferior, TopHome, User, Userr, BottomTO, BottomIcon } from '../components/estilo/stHome.js'
 import { ThemeProvider } from 'styled-components'
 import themes from '../components/themes'
 import { useColorScheme } from 'react-native';
@@ -37,25 +37,22 @@ export default function Home() {
                     </Superior>
 
                     <Meio>
-
                         <Name>Em construção</Name>
-
                         <Description>Em construção</Description>
-
                     </Meio>
 
                     <Inferior>
                         <TO>
-                            <SimpleLineIcons name={'home'} size={30} color='white' />
+                            <BottomIcon name={'home'} size={35} />
                         </TO>
                         <TO onPress={() => nav.navigate('Cardapio')}>
-                            <Ionicons name={'fast-food-outline'} size={30} color='white' />
+                            <BottomIcon name={'food'} size={30}  />
                         </TO>
                         <TO onPress={() => nav.navigate('Pagamento')}>
-                            <FontAwesome name={'dollar'} size={30} color='white' />
+                            <BottomIcon name={'cash'} size={35} />
                         </TO>
                         <TO onPress={() => nav.navigate('Feedback')}>
-                            <MaterialCommunityIcons name={'account-heart-outline'} size={30} color='white' />
+                            <BottomIcon name={'account-heart-outline'} size={30} />
                         </TO>
                     </Inferior>
 

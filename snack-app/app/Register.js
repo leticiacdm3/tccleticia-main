@@ -11,6 +11,7 @@ import { emailLogin, auth, createUser, signOutFirebase } from "../connections_le
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { addUserFirestore } from '../connections_leticia/firebase-store';
+import { Container, Superior } from '../components/estilo/stRegister';
 
 export default function Register() {
     const [fontsLoaded] = useFonts({
@@ -83,14 +84,14 @@ export default function Register() {
     if (fontsLoaded) {
         return (
             <>
-                <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={styles.container}>
+                <Container>
                     <ScrollView>
-                        <View style={styles.superior}>
+                        <Superior>
                             <TO style={styles.voltar}>
                                 <Icon name={'chevron-left'} size={30} color='#AE7CD4' onPress={() => nav.navigate('index')} />
                             </TO>
                             <Text style={styles.textCadastro}> CADASTRO </Text>
-                        </View>
+                        </Superior>
                         <View style={styles.meio}>
 
                             <Cadastro label='Digite seu nome:' text={name} setText={(text) => setName(text)} />
@@ -169,7 +170,7 @@ export default function Register() {
                             </TO>
                         </View>
                     </ScrollView>
-                </KeyboardAvoidingView>
+                </Container>
             </>
         );
 

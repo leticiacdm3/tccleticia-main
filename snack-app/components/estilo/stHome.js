@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const Container = styled.View`
 flex: 1;
@@ -28,7 +29,7 @@ width: 100%;
 height: 10%;
 align-items: center;
 justify-content: flex-start;
-background-color: #6D458B;
+background-color: ${props => props.theme.topColor};
 flex-direction: row;
 `;
 export const Inferior = styled.View`
@@ -36,7 +37,7 @@ width: 100%;
 height: 7%;
 align-items: center;
 justify-content: space-evenly;
-background-color: #001127;
+background-color: ${props => props.theme.bottomColor};
 flex-direction: row;
 `;
 export const TopHome = styled.Text`
@@ -55,4 +56,8 @@ marginRight: 15px;
 
 export const Userr = styled.TouchableOpacity`
 marginTop: 10px;
+`;
+
+export const BottomIcon = styled(Icon)`
+color: ${props => props.theme.iColor};
 `;

@@ -124,15 +124,18 @@ export default function Home() {
                                         </View>
                                     ))}
                                 </View>
+
                             </View>
                         ))}
 
 
 
-                        {/* <Text style={styles.nome}>{perfil && perfil.name}</Text>
-                    <TO onPress={trySignOut}>
-                        <Text style={styles.sair}>SAIR</Text>
-                    </TO> */}
+                        {/* <Text style={styles.nome}>{perfil && perfil.name}</Text> */}
+
+                    <TO style={{backgroundColor: 'gray', width: 200, height:40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', marginTop: 50}} onPress={trySignOut}>
+                        <Text style={{fontWeight:500, color: 'white', fontSize: 20}}>SAIR</Text>
+                    </TO>
+
                     </ScrollView>
                 </View>
 
