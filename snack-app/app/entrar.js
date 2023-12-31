@@ -6,7 +6,9 @@ import Splash from './Splash'
 import Password from '../components/Password';
 import { useNavigation } from 'expo-router';
 import { emailLogin, auth } from "../connections_leticia/firebase-auth";
-
+import { ThemeProvider } from 'styled-components';
+import themes from '../components/themes';
+import { useColorScheme } from 'react-native'; 
 
 export default function Entrar() {
 
@@ -21,9 +23,6 @@ export default function Entrar() {
       nav.navigate('Casa')
 
     } else {
-      //Tratar quando o usuário errar login e senha
-      //Existem outras opções de erros:
-      //Varias tentativas d login fracassados
       alert("Usuário ou senha inválido ");
     }
 
@@ -40,10 +39,13 @@ export default function Entrar() {
     }
   }, [])
 
+  const deviceTheme = useColorScheme();
+  const theme = themes[deviceTheme] || theme.dark;
+
   if (fontsLoaded) {
     return (
       <>
-
+        <ThemeProvider theme={theme}>
         <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={[styles.darkbg, styles.container]}>
           <View style={styles.container}>
             <View>
@@ -92,7 +94,7 @@ export default function Entrar() {
             </View>
           </View>
         </KeyboardAvoidingView>
-
+        </ThemeProvider>
 
       </>
 

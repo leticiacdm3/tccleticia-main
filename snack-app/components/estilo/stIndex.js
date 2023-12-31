@@ -34,7 +34,7 @@ borderRadius: 10px;
 
 export const RegisterButtonText = styled.Text`
 fontSize: 20px;
-color: ${props => props.theme.textColorIndex};
+color: white;
 textAlign: center;
 fontFamily: 'Montserrat-Regular';
 `;

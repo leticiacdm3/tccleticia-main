@@ -50,14 +50,15 @@ fontFamily: Montserrat-Regular;
 
 export const TextCadastro = styled.Text`
 fontSize: 40px;
-color: ${props => props.theme.colorTextCadastro};
+color: white;
 fontFamily: Montserrat-Regular;
 marginTop: 30px;
+marginLeft: 20px;
 `;
 
 export const NotYet = styled.Text`
 fontSize: 20px;
-color: ${props => props.theme.colorNotYet};
+color: white;
 fontFamily: Montserrat-Regular;
 `;
 
@@ -74,7 +75,7 @@ marginBottom: 30px
 `;
 
 export const Tdu = styled.Text`
-color: ${props => props.theme.colorNotYet};
+color: white;
 fontSize: 15px;
 fontFamily: Montserrat-Regular;
 `;

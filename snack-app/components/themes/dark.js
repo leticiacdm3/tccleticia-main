@@ -14,5 +14,5 @@ export default {
     colorRegisterButton: '#6D458B',
     colorTextCadastro: '#00bf63',
     colorNotYet: '#fff',
-    colorNaoPossuiCadastre: '#00BF63'
+    colorNaoPossuiCadastre: '#00BF63',
 }

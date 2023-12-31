@@ -11,7 +11,10 @@ import { emailLogin, auth, createUser, signOutFirebase } from "../connections_le
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SelectList } from 'react-native-dropdown-select-list';
 import { addUserFirestore } from '../connections_leticia/firebase-store';
-import { Container, Superior } from '../components/estilo/stRegister';
+import { Container, Superior, Meio, TextCadastro, Rodape, Vtermos, Tdu, Termo, RegisterButton, RegisterButtonText, NaoPossui, NotYet, NaoPossuiCadastre } from '../components/estilo/stRegister';
+import { useColorScheme } from 'react-native';
+import { ThemeProvider } from 'styled-components'
+import themes from '../components/themes'
 
 export default function Register() {
     const [fontsLoaded] = useFonts({
@@ -42,7 +45,8 @@ export default function Register() {
             alert('Erro ao criar usuário');
         }
     }
-
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
     const [estado, setEstado] = useState("");
     const data = [
         { key: '1', value: 'Acre', disabled: true },
@@ -84,15 +88,16 @@ export default function Register() {
     if (fontsLoaded) {
         return (
             <>
+            <ThemeProvider theme={theme}>
                 <Container>
                     <ScrollView>
                         <Superior>
                             <TO style={styles.voltar}>
-                                <Icon name={'chevron-left'} size={30} color='#AE7CD4' onPress={() => nav.navigate('index')} />
+                                <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('index')} />
                             </TO>
-                            <Text style={styles.textCadastro}> CADASTRO </Text>
+                            <TextCadastro> CADASTRO </TextCadastro>
                         </Superior>
-                        <View style={styles.meio}>
+                        <Meio>
 
                             <Cadastro label='Digite seu nome:' text={name} setText={(text) => setName(text)} />
                             <Cadastro label='Digite seu CPF:' text={cpf} setText={(text) => setCpf(text)} />
@@ -141,36 +146,36 @@ export default function Register() {
                                     { color: 'white' }
                                 }
                             />
-                        </View>
-                        <View style={styles.rodape}>
-                            <View style={styles.vTermos}>
+                        </Meio>
+                        <Rodape>
+                            <Vtermos>
                                 <CheckBox
                                     style={styles.checkbox}
                                     disabled={false}
                                     value={isChecked}
                                     onValueChange={(setChecked)}
                                 />
-                                <Text style={styles.tdu}>Li e concordo com os </Text>
-                                <TO onPress={() => nav.navigate('Termos')}><Text style={styles.termo}>Termos de Uso</Text></TO>
-                            </View>
+                                <Tdu>Li e concordo com os </Tdu>
+                                <TO onPress={() => nav.navigate('Termos')}><Termo>Termos de Uso</Termo></TO>
+                            </Vtermos>
 
-                            <TO
-                                onPress={() => {tryCreateUser();}}
-                                style={styles.registerButton}>
-                                <Text style={styles.registerButtonText}>
+                            <RegisterButton
+                                onPress={() => {tryCreateUser();}}>
+                                <RegisterButtonText>
                                     CADASTRAR
-                                </Text>
-                            </TO>
+                                </RegisterButtonText>
+                            </RegisterButton>
 
-                        </View>
-                        <View style={styles.naoPossui}>
-                            <Text style={styles.notYet}> Já possui conta? </Text>
+                        </Rodape>
+                        <NaoPossui>
+                            <NotYet> Já possui conta? </NotYet>
                             <TO onPress={() => nav.navigate('entrar')}>
-                                <Text style={styles.naoPossuiCadastre}>ENTRE</Text>
+                                <NaoPossuiCadastre>ENTRE</NaoPossuiCadastre>
                             </TO>
-                        </View>
+                        </NaoPossui>
                     </ScrollView>
                 </Container>
+                </ThemeProvider>
             </>
         );
 
@@ -181,87 +186,6 @@ export default function Register() {
 
 }
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#6D458B',
-    },
-
-    superior: {
-        paddingBottom: 30,
-        flexDirection: 'row',
-        marginTop: 50,
-
-    },
-    meio: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 70,
-        marginRight: 30,
-        marginLeft: 30,
-        paddingBottom: 80,
-        backgroundColor: '#714990'
-    },
-    rodape: {
-        flex: 1,
-        marginTop: 50
-    },
-
-    registerButton: {
-        padding: 4,
-        height: 40,
-        width: 200,
-        backgroundColor: '#00BF63',
-        justifyContent: 'center',
-        borderRadius: 50,
-        alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 50
-    },
-    registerButtonText: {
-        fontWeight: '400',
-        fontSize: 20,
-        color: '#6D458B',
-        textAlign: 'center',
-        fontFamily: 'Montserrat-Regular'
-    },
-    textCadastro: {
-        fontSize: 40,
-        color: '#00bf63',
-        fontFamily: 'Montserrat-Regular',
-        marginTop: 30
-    },
-    notYet: {
-        fontSize: 20,
-        color: '#fff',
-        fontFamily: 'Montserrat-Regular'
-    },
-    naoPossuiCadastre: {
-        color: '#00BF63',
-        fontSize: 20,
-        fontFamily: 'Montserrat-Regular'
-    },
-    naoPossui: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginBottom: 30
-    },
-    tdu: {
-        color: 'white',
-        fontSize: 15,
-        fontFamily: 'Montserrat-Regular'
-    },
-    termo: {
-        color: '#00BF63',
-        fontSize: 15,
-        fontFamily: 'Montserrat-Regular'
-    },
-    vTermos: {
-        flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     checkbox: {
         margin: 8,
     },
