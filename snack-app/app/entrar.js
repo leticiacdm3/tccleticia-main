@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform} from 'react-native';
 import { useEffect, useState } from 'react';
 import Field from '../components/Field';
 import { useFonts } from 'expo-font';
@@ -9,6 +9,9 @@ import { emailLogin, auth } from "../connections_leticia/firebase-auth";
 import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
 import { useColorScheme } from 'react-native'; 
+import { Container, ForgotPassword, ForgotPasswordText, Inferior, NaoPossui, NaoPossuiCadastre, NotYet, LoginForm, LoginButton, ButtonLogin, ButtonLoginText, LoginButtonText } from '../components/estilo/stEntrar';
+
+
 
 export default function Entrar() {
 
@@ -31,7 +34,8 @@ export default function Entrar() {
   const [fontsLoaded] = useFonts({
     'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
   });
-  const imgSource = require('../assets/logoescuro.png')
+  const imgSource = require('../assets/logoescuro.png');
+
   useEffect(() => {
     if (auth.currentUser) {
       console.log(auth.currentUser)
@@ -46,54 +50,52 @@ export default function Entrar() {
     return (
       <>
         <ThemeProvider theme={theme}>
-        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={[styles.darkbg, styles.container]}>
+        <Container>
           <View style={styles.container}>
             <View>
+              { deviceTheme === 'dark'
+              ?
               <Image style={styles.image} source={imgSource} />
+              :
+              <Image style={styles.image} source={require('../assets/logoclaro.png')} />
+              }
+              
             </View>
 
-            <View style={styles.inferior}>
-              {/* <View>
-                {
-                  userMessage ? <Text style={styles.loginMsg}>Usuário ou senha inválido</Text> : null
-                }
-
-              </View> */}
-
-              <View style={styles.loginForm}>
+            <Inferior>
+              <LoginForm>
                 <Field label='E-MAIL' icon='user' value={email} setText={setEmail} />
                 <Password labelpass='SENHA' ipassword='lock' value={pass} setSenha={setPass} />
                 { email === "" || pass === "" 
                 ? 
-                <TouchableOpacity
+                <ButtonLogin
                 disabled={true}
-                style={styles.buttonLogin}
+                
                 > 
-                <Text style={styles.buttonLoginText}>ENTRAR</Text>
-                </TouchableOpacity>
+                <ButtonLoginText>ENTRAR</ButtonLoginText>
+                </ButtonLogin>
                 :
-                <TouchableOpacity
-                  style={styles.loginButton}
+                <LoginButton
                   onPress={tryLogin} >
-                  <Text style={styles.loginButtonText} >ENTRAR</Text>
-                </TouchableOpacity>
+                  <LoginButtonText>ENTRAR</LoginButtonText>
+                </LoginButton>
                 }
                 
 
-                <TouchableOpacity style={styles.forgotPassword}>
-                  <Text style={styles.forgotPasswordText}>Esqueceu sua senha?</Text>
-                </TouchableOpacity>
+                <ForgotPassword>
+                  <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
+                </ForgotPassword>
 
-                <View style={styles.naoPossui}>
-                  <Text style={styles.notYet}>Ainda não possui conta? </Text>
+                <NaoPossui>
+                  <NotYet>Ainda não possui conta? </NotYet>
                   <TouchableOpacity onPress={() => nav.navigate('Register')}>
-                    <Text style={styles.naoPossuiCadastre}>CADASTRE-SE</Text>
+                    <NaoPossuiCadastre>CADASTRE-SE</NaoPossuiCadastre>
                   </TouchableOpacity>
-                </View>
-              </View>
-            </View>
+                </NaoPossui>
+              </LoginForm>
+            </Inferior>
           </View>
-        </KeyboardAvoidingView>
+        </Container>
         </ThemeProvider>
 
       </>
@@ -133,10 +135,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#AE7CD4'
   },
-  superior: {
-    height: '50%',
-    width: '100%',
-  },
   inferior: {
     height: '50%',
     width: '100%',
@@ -164,13 +162,6 @@ const styles = StyleSheet.create({
   loginForm: {
     width: '80%',
     alignItems: 'center',
-    fontFamily: 'Montserrat-Regular'
-  },
-  loginInput: {
-    backgroundColor: '#fff',
-    fontSize: 20,
-    padding: 7,
-    marginBottom: 15,
     fontFamily: 'Montserrat-Regular'
   },
   loginButton: {

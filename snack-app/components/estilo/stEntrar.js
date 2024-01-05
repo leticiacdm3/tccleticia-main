@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const Container = styled.KeyBoardAvoidingView`
+export const Container = styled.View`
 flex: 1;
-justifyContent: center;
-alignItems: center;
-backgroundColor: ${props => props.theme.topColor};
+background-color: ${props => props.theme.topColor};
+align-items: center;
+justify-content: center;
 `;
 
 export const NotYet = styled.Text`
@@ -24,19 +25,14 @@ flexDirection: row;
 paddingTop: 100px;
 `;
 
-export const ForgotPassword = styled.View`
+export const ForgotPassword = styled.TouchableOpacity`
 marginTop: 7px;
 `;
 
 export const ForgotPasswordText = styled.Text`
 fontFamily: Montserrat-Regular;
 fontSize: 17px;
-color: ${props => props.theme.colorRegisterButton};
-`;
-
-export const Superior = styled.View`
-height: 50%;
-width: 100%;
+color: ${props => props.theme.colorIndex};
 `;
 
 export const Inferior = styled.View`
@@ -45,22 +41,12 @@ width: 100%;
 marginBottom: 100px;
 `;
 
-export const Image = styled.Image`
+export const Imagem = styled.Image`
 width: 270px;
 height: 80px;
 resizeMode: contain;
 paddingBottom: 300px;
 marginTop: 100px;
-`;
-
-
-export const LoginMsg = styled.Text`
-fontWeight: bold;
-fontSize: 14px;
-color: ${props => props.theme.colorNotYet};
-marginTop: 10px;
-alignSelgf: center;
-fontFamily: Montserrat-Regular;
 `;
 
 export const LoginForm = styled.View`
@@ -69,13 +55,6 @@ alignItems: center;
 fontFamily: Montserrat-Regular;
 `;
 
-export const LoginInput = styled.TextInput`
-backgroundColor: ${props => props.theme.colorNotYet};
-fontSize: 20px;
-padding: 7px;
-marginBottom: 15px;
-fontFamily: Montserrat-Regular;
-`;
 
 export const LoginButton = styled.TouchableOpacity`
 padding: 4px;
