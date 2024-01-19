@@ -16,4 +16,7 @@ export default {
     colorNotYet: '#fff',
     colorNaoPossuiCadastre: '#00BF63',
     bgPerfil: '#011837',
+    colorPerfil: '#fff',
+    bgRow: '#011D41',
+    borderPerfil: '#1A375C',
 }

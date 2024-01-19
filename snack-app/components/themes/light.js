@@ -15,4 +15,8 @@ export default {
     colorTextCadastro: '#6D458B',
     colorNotYet: 'black',
     colorNaoPossuiCadastre: '#6D458B',
+    bgPerfil: '#D8D8D8',
+    colorPerfil: 'red',
+    bgRow: '#D9DADB',
+    borderPerfil: '#B5B5B5',
 }
