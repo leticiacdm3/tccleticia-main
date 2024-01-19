@@ -11,8 +11,6 @@ import themes from '../components/themes';
 import { useColorScheme } from 'react-native'; 
 import { Container, ForgotPassword, ForgotPasswordText, Inferior, NaoPossui, NaoPossuiCadastre, NotYet, LoginForm, LoginButton, ButtonLogin, ButtonLoginText, LoginButtonText } from '../components/estilo/stEntrar';
 
-
-
 export default function Entrar() {
 
   const [email, setEmail] = useState('');
@@ -51,7 +49,7 @@ export default function Entrar() {
       <>
         <ThemeProvider theme={theme}>
         <Container>
-          <View style={styles.container}>
+          <View>
             <View>
               { deviceTheme === 'dark'
               ?
@@ -108,38 +106,6 @@ export default function Entrar() {
 }
 const styles = StyleSheet.create({
 
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  notYet: {
-    fontSize: 17,
-    color: '#fff',
-    fontFamily: 'Montserrat-Regular'
-  },
-  naoPossuiCadastre: {
-    color: '#00BF63',
-    fontSize: 17,
-    fontFamily: 'Montserrat-Regular'
-  },
-  naoPossui: {
-    flexDirection: 'row',
-    paddingTop: 100,
-  },
-  forgotPassword: {
-    marginTop: 7
-  },
-  forgotPasswordText: {
-    fontFamily: 'Montserrat-Regular',
-    fontSize: 17,
-    color: '#AE7CD4'
-  },
-  inferior: {
-    height: '50%',
-    width: '100%',
-    marginBottom: 100
-  },
   image: {
     width: 270,
     height: 80,
@@ -147,61 +113,6 @@ const styles = StyleSheet.create({
     paddingBottom: 300,
     marginTop: 100
   },
-  darkbg: {
-    backgroundColor: '#6D458B'
-  },
-  loginMsg: {
-    fontWeight: 'bold',
-    fontSize: 14,
-    color: '#fff',
-    marginTop: 10,
-    marginBottom: 0,
-    alignSelf: 'center',
-    fontFamily: 'Montserrat-Regular'
-  },
-  loginForm: {
-    width: '80%',
-    alignItems: 'center',
-    fontFamily: 'Montserrat-Regular'
-  },
-  loginButton: {
-    padding: 4,
-    height: '15%',
-    width: 110,
-    height: 40,
-    backgroundColor: '#00BF63',
-    justifyContent: 'center',
-    borderRadius: 40,
-    alignSelf: 'center',
-    marginTop: 40,
-  },
-  loginButtonText: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#6D458B',
-    textAlign: 'center',
-    fontFamily: 'Montserrat-Regular',
-  },
-  buttonLoginText:{
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#DBD7D7',
-    textAlign: 'center',
-    fontFamily: 'Montserrat-Regular',
-  },
-  buttonLogin:{
-    padding: 4,
-    height: '15%',
-    width: 110,
-    height: 40,
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    borderRadius: 40,
-    alignSelf: 'center',
-    marginTop: 40,
-  }
   
-
-
 
 })

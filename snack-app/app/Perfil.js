@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch, useColorScheme } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from 'expo-router';
 import { SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
@@ -9,6 +9,9 @@ import { getPerfilFromUid } from '../connections_leticia/firebase-store';
 import { auth } from '../connections_leticia/firebase-auth';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {EventRegister} from 'react-native-event-listeners';
+import { ThemeProvider } from '@react-navigation/native';
+import themes from '../components/themes';
+import { useColorScheme } from 'react-native';
 
 export default function Home() {
     const [form, setForm] = useState({
