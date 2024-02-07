@@ -15,10 +15,11 @@ export default {
     colorTextCadastro: '#6D458B',
     colorNotYet: 'black',
     colorNaoPossuiCadastre: '#6D458B',
-    bgPerfil: '#D8D8D8',
-    colorPerfil: 'red',
-    bgRow: '#D9DADB',
+    bgPerfil: '#E5E2E2',
+    colorPerfil: 'white',
+    bgRow: '#EFEEEE',
     borderPerfil: '#B5B5B5',
     colorIcones: 'black',
-    colorVoltIcon: 'black'
+    colorVoltIcon: 'black',
+    
 }

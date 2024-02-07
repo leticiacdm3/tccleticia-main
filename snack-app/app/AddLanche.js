@@ -7,7 +7,7 @@ import * as imagePicker from 'expo-image-picker';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { storage, db, getStorage } from "../connections_leticia/firebase-store";
-import { addLancheFirestore } from '../connections_leticia/firebase-store';
+import { addLancheFirestore } from '../connections_leticia/firebase-store'; 
 
 export default function AddLanche() {
     const [image, setImage] = useState('https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg')

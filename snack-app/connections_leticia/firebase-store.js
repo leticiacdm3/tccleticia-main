@@ -18,7 +18,7 @@ const addUserFirestore = async (userCredential, name, cpf, phone, birthDate, est
         birthDate: birthDate,
         state: estado,
         profile: perfil
-
+ 
     }
     console.log(data)
     return await setDoc(doc(db, "usuarios", uid), data);
@@ -58,10 +58,12 @@ const getLancheFromUid = async (uid) => {
 }
 
 const getLanches = async (uid) => {
+    let lanches = []
     const querySnapshot = await getDocs(collection(db, "produtos"));
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        lanches.push(doc.data());
     });
+    return lanches
 }
 
 

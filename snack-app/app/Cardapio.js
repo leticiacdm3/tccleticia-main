@@ -5,20 +5,30 @@ import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIco
 import { useFonts } from 'expo-font';
 import { useEffect, useState } from 'react';
 import Lanchinhos from '../components/Lanchinhos';
-import { getLanches } from '../connections_leticia/firebase-store';
+import { getLanches, storage } from '../connections_leticia/firebase-store';
 
 export default function Cardapio() {
     const nav = useNavigation();
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
-    });
+    }); 
+
+    const [lanches, setLanches] = useState([])
 
     useEffect(() => {
-        getLanches();
+        console.log("radc")
+        initial();
     }, []);
 
-    if (fontsLoaded) {
+    const initial = async () => {
+        const l = await getLanches()
+        setLanches(l);
+    }
+
+    console.warn("teste")
+
+    // if (fontsLoaded) {
     return (
         <View style={styles.container}>
             <View style={styles.superior}>
@@ -39,10 +49,20 @@ export default function Cardapio() {
             <View style={styles.meio}>
                 <ScrollView style={styles.meinho}>
                 <Lanchinhos/>
+                {
+                    lanches && lanches.map((l, i) => {
+                        return (
+                            <Lanchinhos key={i} titulo={l.productName} preco={l.value} image={}/>
+                        )
+                    })
+                }
                     <TO style={styles.addLanche} onPress={()=> nav.navigate('Lanche')}>
                         <AntDesign name={'pluscircleo'} size={30} color='white'/>
                         <Text style={styles.addLancheText}> ADICIONAR LANCHES </Text>
                     </TO>
+                    <Text style={{
+                        backgroundColor: '#6D458B',
+                    }}>TESTE</Text>
                 </ScrollView>
             </View>
 
@@ -63,7 +83,9 @@ export default function Cardapio() {
 
         </View>
     );
-}}
+// }
+
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,

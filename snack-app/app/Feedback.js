@@ -1,18 +1,27 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, TextInput, TouchableOpacity, Platform, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation, useRouter } from 'expo-router';
 import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Casa from './Casa';
+//import * as MailComposer from 'expo-mail-composer';
 
 export default function Feedback() {
     const nav = useNavigation();
+    const [body, setBody] = useState('');
+
+    // const sendMail = () => {
+    //     MailComposer.composeAsync({
+    //         subject: 'Recomendação',
+    //         body: body,
+    //         recipients: ["leticiademarcco@live.com"],
+    //     });
+
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
     });
-
     if (fontsLoaded) {
     return (
         <View style={styles.container}>
@@ -30,9 +39,9 @@ export default function Feedback() {
             </View>
 
             <View style={styles.meio}>
-                <ScrollView>
-                    
-                </ScrollView>
+                <Text style={styles.txtF}>Envie sua recomendação!</Text>
+                <TextInput style={styles.input}  placeholder="Digite aqui" multiline/>
+                <TouchableOpacity style={styles.btn}><Text style={styles.txtbtn}>ENVIAR</Text></TouchableOpacity>
             </View>
 
             <View style={styles.inferior}>
@@ -103,5 +112,36 @@ const styles = StyleSheet.create({
     },
     userr:{
         marginTop: 10
+    },
+    txtF: {
+        color: 'white',
+        fontSize: 20,
+        fontFamily: 'Montserrat-Regular',
+        marginTop: 20,
+        marginBottom: 20
+    },
+    input: {
+        borderWidth: 1,
+        borderRadius: 10,
+        height: 100,
+        width: 300,
+        marginBottom: 20,
+        paddingLeft: 10,
+        backgroundColor: '#fff',
+    },
+    btn: {
+        backgroundColor: '#6D458B',
+        width: 150,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: 30,
+    },
+    txtbtn:{
+        color: 'white',
+        fontSize: 20,
+        fontFamily: 'Montserrat-Regular',
     },
 });

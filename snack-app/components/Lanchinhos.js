@@ -4,17 +4,20 @@ import { useNavigation } from '@react-navigation/native';
 
 export default (props) => {
     
+    const titulo = props.titulo || 'Sem título';
+    const preco = props.preco || 'Sem preço';
+
     return (
         <View style={styles.container}>
             <View style={styles.vImg}>
                 <Image
                     style={styles.img}
                     source={{ uri: 'https://www.sweetpoint.com.br/wp-content/uploads/2022/11/Fatia-Brigadeiro-scaled.jpg' }} />
-            </View>
+            </View> 
 
             <View style={styles.vTxt}>
-                <Text style={styles.textFood}>Bolo de Chocolate</Text>
-                <Text style={styles.moneyText}>R$5,00</Text>
+                <Text style={styles.textFood}>{titulo}</Text>
+                <Text style={styles.moneyText}>{preco}</Text>
                 
             </View>
 

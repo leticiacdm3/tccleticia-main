@@ -75,7 +75,7 @@ export const Titulo = styled.Text`
 fontFamily: Montserrat-Regular;
 fontSize:27px;
 padding-left: 80px;
-color: white;
+color: ${props => props.theme.colorVoltIcon};
 marginTop: 15px;
 `;
 
@@ -91,7 +91,7 @@ paddingVertical: 8px;
 export const SectionHeaderText = styled.Text`
 fontSize: 14px;
 fontWeight: 600;
-color: white;
+color: ${props => props.theme.colorVoltIcon};
 textTransform: uppercase;
 letterSpacing: 1.2px;
 `;
@@ -114,16 +114,16 @@ paddingRight: 24px;
 export const RowLabel = styled.Text`
 fontSize: 17px;
 fontWeight: 500;
-color: white;
+color: ${props => props.theme.colorVoltIcon};
 `;
 
 export const RowSpacer = styled.View`
 flex: 1;
-`;
+`; 
 
 export const RowValue = styled.Text`
 fontSize: 17px;
-color: white;
+color: ${props => props.theme.colorVoltIcon};
 marginRight: 4px;
 `;
 
@@ -137,4 +137,21 @@ color: ${props => props.theme.colorVoltIcon};
 
 export const SairIcon = styled(Icon)`
 color: ${props => props.theme.colorVoltIcon};
+`;
+
+export const Pjc = styled.TouchableOpacity`
+background-color: gray;
+width: 200px;
+height: 40px;
+borderRadius: 20px;
+align-items: center;
+justify-content: center;
+alignSelf: center;
+marginTop: 50px;
+`;
+
+export const PjcText = styled.Text`
+fontWeight: 500;
+color: ${props => props.theme.colorPerfil};
+fontSize: 20px;
 `;

@@ -1,27 +1,28 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch, Linking} from 'react-native';
 import { useNavigation } from 'expo-router';
-import { SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useEffect, useState } from 'react';
 import { signOutFirebase } from '../connections_leticia/firebase-auth';
 import { getPerfilFromUid } from '../connections_leticia/firebase-store';
 import { auth } from '../connections_leticia/firebase-auth';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 import {EventRegister} from 'react-native-event-listeners';
 import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
 import { useColorScheme } from 'react-native';
-import { Container, Icones, Meio, Row, RowLabel, RowSpacer, RowValue, RowWrapper, SectionHeader, SectionHeaderText, Superior, Titulo, VoltIcon, Voltar } from '../components/estilo/stPerfil';
+import { Container, Icones, Meio, Row, RowLabel, RowSpacer, RowValue, RowWrapper, SairIcon, Section, SectionHeader, SectionHeaderText, Superior, Titulo, VoltIcon, Voltar, Pjc, PjcText } from '../components/estilo/stPerfil';
+
 
 export default function Home() {
     const [form, setForm] = useState({
-        language: 'Português',
+        language: 'Português', 
     });
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;
     const nav = useNavigation();
     const [darkMode, setDarkMode] = useState(false);
+
+
+
     const SECTIONS = [
         {
             header: 'Preferências',
@@ -73,7 +74,7 @@ export default function Home() {
             <Container>
                 <Superior>
                     <Voltar>
-                        <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('entrar')} />
+                        <SairIcon name={'chevron-left'} size={30} onPress={() => nav.navigate('entrar')} />
                     </Voltar>
                     <Titulo>CONFIGURAÇÕES</Titulo>
                 </Superior>
@@ -81,7 +82,7 @@ export default function Home() {
                 <Meio>
                     <ScrollView>
                         {SECTIONS.map(({ header, items }) => (
-                            <View style={styles.section} key={header}>
+                            <Section key={header}>
                                 <SectionHeader>
                                     <SectionHeaderText>{header}</SectionHeaderText>
                                 </SectionHeader>
@@ -95,7 +96,7 @@ export default function Home() {
                                         >
                                             <TO
                                                 onPress={() => {
-                                                    //handlePress
+                                                    //handle press
                                                 }}>
                                                 <Row>
                                                     <Icones
@@ -121,7 +122,7 @@ export default function Home() {
                                                     />  
                                                     )}
                                                     {['select', 'link'].includes(type) && (
-                                                        <VoltIcon name="chevron-right" color="white" size={22}/>
+                                                        <VoltIcon name="chevron-right" size={20}/>
 
                                                     )}
                                                 </Row>
@@ -130,16 +131,16 @@ export default function Home() {
                                     ))}
                                 </View>
 
-                            </View>
+                            </Section>
                         ))}
 
 
 
                         {/* <Text style={styles.nome}>{perfil && perfil.name}</Text> */}
 
-                    <TO style={{backgroundColor: 'gray', width: 200, height:40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', marginTop: 50}} onPress={trySignOut}>
-                        <Text style={{fontWeight:500, color: 'white', fontSize: 20}}>SAIR</Text>
-                    </TO>
+                    <Pjc onPress={trySignOut}>
+                        <PjcText>SAIR</PjcText>
+                    </Pjc>
 
                     </ScrollView>
                 </Meio>
