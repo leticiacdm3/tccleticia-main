@@ -3,7 +3,9 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation, useRouter } from 'expo-router';
 import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Lanchinhos from '../components/Lanchinhos';
+import { getLanches } from '../connections_leticia/firebase-store';
 
 export default function Cardapio() {
     const nav = useNavigation();
@@ -11,6 +13,10 @@ export default function Cardapio() {
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
     });
+
+    useEffect(() => {
+        getLanches();
+    }, []);
 
     if (fontsLoaded) {
     return (
@@ -31,7 +37,8 @@ export default function Cardapio() {
             </View>
 
             <View style={styles.meio}>
-                <ScrollView>
+                <ScrollView style={styles.meinho}>
+                <Lanchinhos/>
                     <TO style={styles.addLanche} onPress={()=> nav.navigate('Lanche')}>
                         <AntDesign name={'pluscircleo'} size={30} color='white'/>
                         <Text style={styles.addLancheText}> ADICIONAR LANCHES </Text>
@@ -118,7 +125,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        marginTop: 280
+        marginTop: 30,
+        marginLeft: 60
     },
     addLancheText:{
         fontFamily: 'Montserrat-Regular',
@@ -126,5 +134,8 @@ const styles = StyleSheet.create({
         color: 'white',
         paddingLeft: 10
     },
+    meinho:{
+        paddingTop: 20,
+    }
     
 });

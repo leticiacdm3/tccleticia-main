@@ -9,29 +9,32 @@ import { getPerfilFromUid } from '../connections_leticia/firebase-store';
 import { auth } from '../connections_leticia/firebase-auth';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {EventRegister} from 'react-native-event-listeners';
-import { ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
 import { useColorScheme } from 'react-native';
+import { Container, Icones, Meio, Row, RowLabel, RowSpacer, RowValue, RowWrapper, SectionHeader, SectionHeaderText, Superior, Titulo, VoltIcon, Voltar } from '../components/estilo/stPerfil';
 
 export default function Home() {
     const [form, setForm] = useState({
         language: 'Português',
     });
-    const [darkMode, setDarkMode] = useState(false);
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
     const nav = useNavigation();
+    const [darkMode, setDarkMode] = useState(false);
     const SECTIONS = [
         {
             header: 'Preferências',
             items: [
                 { id: 'language', icon: 'globe', label: 'Linguagem', type: 'select' },
-                { id: 'darkMode', icon: 'moon', label: 'Modo Noturno', type: 'toggle' },
+                
             ],
         },
         {
             header: 'Ajuda',
             items: [
                 { id: 'bug', icon: 'flag', label: 'Reporte um problema', type: 'link' },
-                { id: 'contact', icon: 'mail', label: 'Contate-nos', type: 'link' },
+                { id: 'contact', icon: 'envelope-o', label: 'Contate-nos', type: 'link' },
             ],
         },
         {
@@ -66,26 +69,26 @@ export default function Home() {
 
     if (fontsLoaded) {
         return (
-            <View style={styles.container}>
-                <View style={styles.superior}>
-                    <TO style={styles.voltar}>
+            <ThemeProvider theme={theme}>
+            <Container>
+                <Superior>
+                    <Voltar>
                         <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('entrar')} />
-                    </TO>
-                    <Text style={styles.titulo}>CONFIGURAÇÕES</Text>
-                </View>
+                    </Voltar>
+                    <Titulo>CONFIGURAÇÕES</Titulo>
+                </Superior>
 
-                <View style={styles.meio}>
+                <Meio>
                     <ScrollView>
                         {SECTIONS.map(({ header, items }) => (
                             <View style={styles.section} key={header}>
-                                <View style={styles.sectionHeader}>
-                                    <Text style={styles.sectionHeaderText}>{header}</Text>
-                                </View>
+                                <SectionHeader>
+                                    <SectionHeaderText>{header}</SectionHeaderText>
+                                </SectionHeader>
 
-                                <View style={styles.sectionBody}>
+                                <View>
                                     {items.map(({ label, id, type, icon }, index) => (
-                                        <View style={[
-                                            styles.rowWrapper,
+                                        <RowWrapper style={[
                                             index === 0 && { borderTopWidth: 0 },
                                         ]}
                                             key={id}
@@ -94,19 +97,18 @@ export default function Home() {
                                                 onPress={() => {
                                                     //handlePress
                                                 }}>
-                                                <View style={styles.row}>
-                                                    <FeatherIcon
-                                                        name={icon}
-                                                        color="#D9DADB"
+                                                <Row>
+                                                    <Icones
+                                                        name={icon}  
                                                         size={22}
                                                         style={{ marginRight: 12 }}
                                                     />
 
-                                                    <Text style={styles.rowLabel}>{label}</Text>
+                                                    <RowLabel>{label}</RowLabel>
                                                     
-                                                    <View style={styles.rowSpacer} />
+                                                    <RowSpacer/>
                                                     {type === 'select' && (
-                                                        <Text style={styles.rowValue}>{form[id]}</Text>
+                                                        <RowValue>{form[id]}</RowValue>
                                                     )}
                                                     {type === 'toggle' && (
                                                     <Switch
@@ -119,12 +121,12 @@ export default function Home() {
                                                     />  
                                                     )}
                                                     {['select', 'link'].includes(type) && (
-                                                        <FeatherIcon name="chevron-right" color="white" size={22}/>
+                                                        <VoltIcon name="chevron-right" color="white" size={22}/>
 
                                                     )}
-                                                </View>
+                                                </Row>
                                             </TO>
-                                        </View>
+                                        </RowWrapper>
                                     ))}
                                 </View>
 
@@ -140,9 +142,10 @@ export default function Home() {
                     </TO>
 
                     </ScrollView>
-                </View>
+                </Meio>
 
-            </View>
+            </Container>
+            </ThemeProvider>
         );
     }
 }

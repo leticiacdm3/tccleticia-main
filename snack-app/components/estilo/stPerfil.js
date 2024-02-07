@@ -45,20 +45,20 @@ margin-top: 30px;
 
 export const TopHome = styled.View`
 fontFamily: Montserrat-Regular;
-fontSize: 30;
-padding-left: 120;
+fontSize: 30px;
+padding-left: 120px;
 color: ${props => props.theme.colorPerfil};
-margin-top: 10;
+margin-top: 10px;
 `;
 
 export const User = styled.View`
-padding-left: 70;
-margin-top: 10;
-margin-right: 15;
+padding-left: 70px;
+margin-top: 10px;
+margin-right: 15px;
 `;
 
 export const Userr = styled.View`
-margin-top: 10;
+margin-top: 10px;
 `;
 
 export const Sair = styled.View`
@@ -67,7 +67,7 @@ color: ${props => props.theme.colorPerfil};
 
 export const Nome = styled.Text`
 fontFamily: Montserrat-Regular;
-fontSize: 15;
+fontSize: 15px;
 color: white;
 `;
 
@@ -122,7 +122,19 @@ flex: 1;
 `;
 
 export const RowValue = styled.Text`
-fontSize: 17;
+fontSize: 17px;
 color: white;
-marginRight: 4;
+marginRight: 4px;
+`;
+
+export const Icones = styled(Icon)`
+color: ${props => props.theme.colorIcones};
+`;
+
+export const VoltIcon = styled(Icon)`
+color: ${props => props.theme.colorVoltIcon};
+`;
+
+export const SairIcon = styled(Icon)`
+color: ${props => props.theme.colorVoltIcon};
 `;

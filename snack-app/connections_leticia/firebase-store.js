@@ -1,40 +1,41 @@
 //ARQUIVO PARA ACESSAR O BANCO DE DADOS DO FIREBASE
 
-import { getFirestore, collection, addDoc, setDoc, doc, getDoc} from "firebase/firestore";
+import { getFirestore, collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
 import { auth } from "./firebase-auth";
 import { app } from "./firebase-app"
-import {getStorage, ref} from "firebase/storage";
+import { getStorage, ref } from "firebase/storage";
+import { getDocs } from "firebase/firestore";
 
 export const db = getFirestore(app);
 
-const storage = getStorage(app); 
-const addUserFirestore = async (userCredential, name, cpf, phone, birthDate, estado, perfil  ) => {
+const storage = getStorage(app);
+const addUserFirestore = async (userCredential, name, cpf, phone, birthDate, estado, perfil) => {
     const uid = auth.currentUser.uid;
     const data = {
-        name : name,
+        name: name,
         cpf: cpf,
         phone: phone,
         birthDate: birthDate,
         state: estado,
         profile: perfil
-        
+
     }
     console.log(data)
     return await setDoc(doc(db, "usuarios", uid), data);
-    
+
 }
 
-    const addLancheFirestore = async ( nomeProduto, valor, descrição, imagem ) =>{
+const addLancheFirestore = async (nomeProduto, valor, descrição, imagem) => {
 
-        const data = {
-            productName : nomeProduto,
-            value : valor,
-            description : descrição,
-            image : imagem
-        }
-        console.log(data)
-        return await addDoc(collection(db, "produtos"), data);
+    const data = {
+        productName: nomeProduto,
+        value: valor,
+        description: descrição,
+        image: imagem
     }
+    console.log(data)
+    return await addDoc(collection(db, "produtos"), data);
+}
 
 const getPerfilFromUid = async (uid) => {
     const docRef = doc(db, "usuarios", uid);
@@ -56,8 +57,15 @@ const getLancheFromUid = async (uid) => {
     }
 }
 
+const getLanches = async (uid) => {
+    const querySnapshot = await getDocs(collection(db, "produtos"));
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+    });
+}
+
 
 //EXPORTA AS FUNCOES
-export {addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore, getLancheFromUid}
+export { addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore, getLancheFromUid, getLanches }
 
 //CRIAR ALUNO, LISTA DE ALUNOS TOCA E VE QNT DEVE AUMENTA OK E ATUALIZA NO BANCO DE DADOS DEIXAR CARDAPIO PRA DEPOIS

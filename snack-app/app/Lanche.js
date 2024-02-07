@@ -5,6 +5,7 @@ import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIco
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
 import Lanchinhos from '../components/Lanchinhos';
+import AddLanche from './AddLanche';
 
 export default function Pagamento() {
     const nav = useNavigation();
@@ -31,7 +32,7 @@ export default function Pagamento() {
 
             <View style={styles.meio}>
                 <ScrollView >
-                    <Lanchinhos/>
+                    <AddLanche/>
                 </ScrollView>
             </View>
 

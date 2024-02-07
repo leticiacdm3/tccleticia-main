@@ -19,4 +19,6 @@ export default {
     colorPerfil: 'red',
     bgRow: '#D9DADB',
     borderPerfil: '#B5B5B5',
+    colorIcones: 'black',
+    colorVoltIcon: 'black'
 }
