@@ -47,14 +47,13 @@ const getPerfilFromUid = async (uid) => {
     }
 }
 
-const getLancheFromUid = async (uid) => {
-    const docRef = doc(db, "produtos", uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-        return docSnap.data();
-    } else {
-        return null;
-    }
+const getImgLanche = async (uid) => {
+    let lanches = []
+    const querySnapshot = await getDocs(collection(db, "files"));
+    querySnapshot.forEach((doc) => {
+        lanches.push(doc.data());
+    });
+    return lanches
 }
 
 const getLanches = async (uid) => {
@@ -68,6 +67,6 @@ const getLanches = async (uid) => {
 
 
 //EXPORTA AS FUNCOES
-export { addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore, getLancheFromUid, getLanches }
+export { addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore, getImgLanche, getLanches }
 
 //CRIAR ALUNO, LISTA DE ALUNOS TOCA E VE QNT DEVE AUMENTA OK E ATUALIZA NO BANCO DE DADOS DEIXAR CARDAPIO PRA DEPOIS

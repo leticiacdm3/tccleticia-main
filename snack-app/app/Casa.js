@@ -9,7 +9,6 @@ import { ThemeProvider } from 'styled-components'
 import themes from '../components/themes'
 import { useColorScheme } from 'react-native';
 
-
 export default function Home() {
     const nav = useNavigation();
 
@@ -37,8 +36,10 @@ export default function Home() {
                     </Superior>
 
                     <Meio>
-                        <Name>Em construção</Name>
-                        <Description>Em construção</Description>
+                        {/* <TO style={styles.addLanche} onPress={()=> nav.navigate('Lanche')}>
+                            <AntDesign name={'pluscircleo'} size={30} color='white'/>
+                            <Text style={styles.addLancheText}> ADICIONAR LANCHES </Text>
+                        </TO> */}
                     </Meio>
 
                     <Inferior>

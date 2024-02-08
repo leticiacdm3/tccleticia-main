@@ -5,7 +5,7 @@ import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIco
 import { useFonts } from 'expo-font';
 import { useEffect, useState } from 'react';
 import Lanchinhos from '../components/Lanchinhos';
-import { getLanches, storage } from '../connections_leticia/firebase-store';
+import { getLanches, storage, getImgLanche } from '../connections_leticia/firebase-store';
 
 export default function Cardapio() {
     const nav = useNavigation();
@@ -17,7 +17,6 @@ export default function Cardapio() {
     const [lanches, setLanches] = useState([])
 
     useEffect(() => {
-        console.log("radc")
         initial();
     }, []);
 
@@ -26,7 +25,6 @@ export default function Cardapio() {
         setLanches(l);
     }
 
-    console.warn("teste")
 
     // if (fontsLoaded) {
     return (
@@ -52,17 +50,14 @@ export default function Cardapio() {
                 {
                     lanches && lanches.map((l, i) => {
                         return (
-                            <Lanchinhos key={i} titulo={l.productName} preco={l.value} image={}/>
+                            <Lanchinhos key={i} titulo={l.productName} preco={l.value} imagem={l.image}/>
                         )
                     })
                 }
-                    <TO style={styles.addLanche} onPress={()=> nav.navigate('Lanche')}>
+                    <TO style={styles.addLanche} onPress={()=> nav.navigate('AddLanche')}>
                         <AntDesign name={'pluscircleo'} size={30} color='white'/>
                         <Text style={styles.addLancheText}> ADICIONAR LANCHES </Text>
                     </TO>
-                    <Text style={{
-                        backgroundColor: '#6D458B',
-                    }}>TESTE</Text>
                 </ScrollView>
             </View>
 

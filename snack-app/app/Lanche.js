@@ -18,9 +18,6 @@ export default function Pagamento() {
     return (
         <View style={styles.container}>
             <View style={styles.superior}>
-                <TO style={styles.voltar}>
-                    <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('Casa')} />
-                </TO>
                 <Text style={styles.topHome}></Text>
                 <TO style={styles.user}>
                     <AntDesign name={'shoppingcart'} size={30} color='white'/>

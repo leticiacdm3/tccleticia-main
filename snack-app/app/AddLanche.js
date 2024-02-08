@@ -8,6 +8,10 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { storage, db, getStorage } from "../connections_leticia/firebase-store";
 import { addLancheFirestore } from '../connections_leticia/firebase-store'; 
+import { ThemeProvider } from 'styled-components';
+import themes from '../components/themes';
+import { useColorScheme } from 'react-native'; 
+import { Botao, Container, Icone, Icone2, Input, Meio, Superior, Txt, TxtAddImg } from '../components/estilo/stAddLanche';
 
 export default function AddLanche() {
     const [image, setImage] = useState('https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg')
@@ -17,6 +21,8 @@ export default function AddLanche() {
     const [valor, setValor] = useState('');
     const [descrição, setDescrição] = useState('');
     const [imagem, setImagem] = useState('');
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
 
     const tryCreateProduct = async () => {
        await addLancheFirestore(nomeProduto, valor, descrição, imagem);
@@ -72,35 +78,34 @@ export default function AddLanche() {
     }
     const nav = useNavigation();
     return (
-        <View style={styles.container}>
-            <View style={styles.superior}>
+        <ThemeProvider theme={theme}>
+        <Container>
+            <Superior>
                 <TouchableOpacity >
-                    <Icon name={'chevron-left'} size={30} color='#AE7CD4' onPress={() => nav.navigate('Cardapio')} />
+                    <Icone name={'chevron-left'} size={30} onPress={() => nav.navigate('Cardapio')} />
                 </TouchableOpacity>
-            </View>
-            <ScrollView style={styles.meio}>
+            </Superior>
+            <Meio>
 
-                <Text style={styles.txt}>Nome do produto</Text>
-                <TextInput style={styles.input} text={nomeProduto} onChangeText={(text) => setNomeProduto(text)}/>
+                <Txt>Nome do produto</Txt>
+                <Input text={nomeProduto} onChangeText={(text) => setNomeProduto(text)}/>
 
-                <Text style={styles.txt}>Valor</Text>
-                <TextInput style={styles.input} text={valor} onChangeText={(text) => setValor(text)} keyboardType="numeric"/>
+                <Txt>Valor</Txt>
+                <Input text={valor} onChangeText={(text) => setValor(text)} keyboardType="numeric"/>
 
-                <Text style={styles.txt}>Descrição</Text>
-                <TextInput style={styles.input} text={descrição} onChangeText={(text) => setDescrição(text)}/>
-
-                <TouchableOpacity style={styles.botao} onPress={handleImagePicker}>
-                    <AntDesign name="pluscircleo" size={20} marginRight={10} />
-                    <Text style={styles.txtAddImg}>ADICIONAR IMAGEM</Text>
-                </TouchableOpacity>
+                <Botao onPress={handleImagePicker}>
+                    <Icone2 name="plus-circle-outline" size={20} marginRight={10} />
+                    <TxtAddImg>ADICIONAR IMAGEM</TxtAddImg>
+                </Botao>
                 <View style={styles.imagem}>
                     <Image source={{ uri: image }} style={{ width: 190, height: 190 }} />
                 </View>
                 <TouchableOpacity style={styles.botaoSave} onPress={tryCreateProduct}>
                     <Text style={{color:'white'}}>SALVAR LANCHE</Text>
                 </TouchableOpacity>
-            </ScrollView>
-        </View>
+            </Meio>
+        </Container>
+        </ThemeProvider>
     )
 }
 
@@ -133,6 +138,7 @@ const styles = StyleSheet.create({
         flex: 2,
         width: '100%',
         height: '100%',
+        paddingTop: 30
     },
 
     botImg: {
@@ -151,10 +157,10 @@ const styles = StyleSheet.create({
         paddingBottom: 30,
         marginRight: 50,
         alignSelf: 'left',
-        paddingTop: 30,
         width: '100%',
         height: '100%',
-        paddingLeft: 10
+        paddingLeft: 10,
+        paddingTop: 15,
     },
     botao: {
         alignSelf: 'center',

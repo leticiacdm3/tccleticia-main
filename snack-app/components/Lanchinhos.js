@@ -6,18 +6,19 @@ export default (props) => {
     
     const titulo = props.titulo || 'Sem título';
     const preco = props.preco || 'Sem preço';
+    const imagem = 'https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg';
 
     return (
         <View style={styles.container}>
             <View style={styles.vImg}>
                 <Image
                     style={styles.img}
-                    source={{ uri: 'https://www.sweetpoint.com.br/wp-content/uploads/2022/11/Fatia-Brigadeiro-scaled.jpg' }} />
+                    source={{uri:imagem}} />
             </View> 
 
             <View style={styles.vTxt}>
                 <Text style={styles.textFood}>{titulo}</Text>
-                <Text style={styles.moneyText}>{preco}</Text>
+                <Text style={styles.moneyText}>R${preco}</Text>
                 
             </View>
 
@@ -37,7 +38,8 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 20,
         justifyContent: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginBottom: 10
     },
     img: {
         width: 70,

@@ -20,6 +20,7 @@ export default {
     bgRow: '#EFEEEE',
     borderPerfil: '#B5B5B5',
     colorIcones: 'black',
-    colorVoltIcon: 'black',
+    colorVoltIcon: 'black', 
+    bgAdd: 'gray',
     
 }
