@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
 export const Container = styled.View`
 flex: 1;
 background-color: ${props => props.theme.background};
@@ -60,4 +61,57 @@ marginTop: 10px;
 
 export const BottomIcon = styled(Icon)`
 color: ${props => props.theme.iColor};
+`;
+
+export const Vswipe = styled.View`
+background-color: ${props => props.theme.topColor};
+borderRadius: 20px;
+width: 330px;
+height: 480px;
+shadowColor: black;
+shadowOpacity: 0.45;
+shadowRadius: 20px;
+`;
+
+export const Vswiper = styled.View`
+flex: 1;
+align-items: center;
+justify-content: center;
+`;
+
+export const Tnome = styled.Text`
+color: white;
+fontSize:25px;
+fontFamily: 'Montserrat-Regular';
+marginBottom: 15px;
+`;
+
+export const Tnome2 = styled.Text`
+fontSize: 20px;
+fontFamily: 'Montserrat-Regular';
+marginTop: 10px;
+color: white;
+marginBottom: 10px;
+`;
+
+export const Vimg = styled.View`
+flexDirection: row;
+justifyContent: space-between;
+
+`;
+
+export const Tvalnutri = styled.Text`
+fontSize: 20px;
+fontFamily: 'Montserrat-Regular';
+marginTop: 10px;
+color: white;
+marginBottom: 10px;
+`;
+
+export const Tkcal = styled.Text`
+color: white;
+fontSize: 15px;
+fontFamily: 'Montserrat-Regular';
+paddingRight: 100px;
+marginBottom: 20px;
 `;
