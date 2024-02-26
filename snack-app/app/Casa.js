@@ -13,10 +13,28 @@ import { auth } from '../connections_leticia/firebase-auth';
 import Swiper from 'react-native-swiper';
 import { Splash } from './Splash';
 
-export default function Home() {
+export default function Home(props) {
     const nav = useNavigation();
-    const [perfil, setPerfil] = useState('');
 
+    // const [textProfile, setPerfil] = useState("");
+    // useEffect(() => {
+    //     fetchPerfil();
+    // }, []);
+    // const fetchPerfil = async () => {
+    // const uid = auth.currentUser.uid;
+    // const perfil = await getPerfilFromUid(uid);
+    //   if (perfil) {
+    //     setPerfil(perfil);
+    //   }
+    //   console.log(perfil);
+    // }
+  
+    useEffect(() => {
+      if (auth && auth.currentUser) {
+        console.log(auth().currentUser)
+        nav.navigate('Casa')
+      } 
+    }, [])
     useEffect(() => {
         getPerfilFromUid(auth.currentUser.uid)
             .then((perfil) => {

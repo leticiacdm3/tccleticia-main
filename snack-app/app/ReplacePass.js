@@ -6,10 +6,10 @@ import { auth } from '../connections_leticia/firebase-auth';
 
 
 export default function ReplacePass(){
-    const {userMail, setUserMail} = useState('');
+    const [userMail, setUserMail] = useState('');
     const nav = useNavigation();
     
-    function replacePass() {
+    const replacePass = async () => {
         if (userMail !== '') {
             sendPasswordResetEmail(auth, userMail)
             .then(() => {
