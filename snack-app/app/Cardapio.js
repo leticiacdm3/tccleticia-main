@@ -68,12 +68,10 @@ export default function Cardapio() {
                 <TO style={styles.menu} >
                     <Ionicons name={'fast-food-outline'} size={30} color='white' />
                 </TO>
-                <TO style={styles.dinheiro} onPress={() => nav.navigate('Pagamento')}>
+                <TO style={styles.dinheiro} onPress={() => nav.navigate('ToDoList')}>
                     <FontAwesome name={'dollar'} size={30} color='white' />
                 </TO>
-                <TO style={styles.feedback} onPress={() => nav.navigate('Feedback')}>
-                    <MaterialCommunityIcons name={'account-heart-outline'} size={30} color='white' />
-                </TO>
+                
             </View>
 
         </View>

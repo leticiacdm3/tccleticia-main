@@ -7,7 +7,6 @@ export default (props) => {
     const titulo = props.titulo || 'Sem título';
     const preco = props.preco || 'Sem preço';
     const imagem = 'https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg';
-
     return (
         <View style={styles.container}>
             <View style={styles.vImg}>

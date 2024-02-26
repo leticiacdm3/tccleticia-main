@@ -1,7 +1,7 @@
 export default {
     background: '#011837',
     color: 'white',
-    topColor: '#6D458B',
+    topColor: '#4C1C83',
     bottomColor: '#001127',
     iColor: 'white',
     bgIndex: '#6D458B',

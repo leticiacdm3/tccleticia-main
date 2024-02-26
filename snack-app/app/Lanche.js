@@ -40,11 +40,8 @@ export default function Pagamento() {
                 <TO style={styles.menu} onPress={() => nav.navigate('Cardapio')}>
                     <Ionicons name={'fast-food-outline'} size={30} color='white' />
                 </TO>
-                <TO style={styles.dinheiro} >
+                <TO style={styles.dinheiro} onPress={() => nav.navigate('ToDoList')} >
                     <FontAwesome name={'dollar'} size={30} color='white' />
-                </TO>
-                <TO style={styles.feedback} onPress={() => nav.navigate('Feedback')}>
-                    <MaterialCommunityIcons name={'account-heart-outline'} size={30} color='white' />
                 </TO>
             </View>
 

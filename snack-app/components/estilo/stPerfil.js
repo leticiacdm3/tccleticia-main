@@ -155,3 +155,14 @@ fontWeight: 500;
 color: ${props => props.theme.colorPerfil};
 fontSize: 20px;
 `;
+
+export const PjcD = styled.TouchableOpacity`
+background-color: red;
+width: 200px;
+height: 40px;
+borderRadius: 10px;
+align-items: center;
+justify-content: center;
+alignSelf: center;
+marginTop: 8px;
+`;

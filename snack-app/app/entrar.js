@@ -11,10 +11,15 @@ import themes from '../components/themes';
 import { useColorScheme } from 'react-native'; 
 import { Container, ForgotPassword, ForgotPasswordText, Inferior, NaoPossui, NaoPossuiCadastre, NotYet, LoginForm, LoginButton, ButtonLogin, ButtonLoginText, LoginButtonText } from '../components/estilo/stEntrar';
 
+
 export default function Entrar() {
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+
+  function replacePass() {
+    nav.navigate('ReplacePass')
+  }
   const tryLogin = async () => {
     console.log(email, pass)
     const userCredential = await emailLogin(email, pass);
@@ -40,7 +45,7 @@ export default function Entrar() {
       nav.navigate('Casa')
     }
   }, [])
-
+  
   const deviceTheme = useColorScheme();
   const theme = themes[deviceTheme] || theme.dark;
 
@@ -81,7 +86,7 @@ export default function Entrar() {
                 
 
                 <ForgotPassword>
-                  <ForgotPasswordText>Esqueceu sua senha?</ForgotPasswordText>
+                  <ForgotPasswordText onPress={replacePass}>Esqueceu sua senha?</ForgotPasswordText>
                 </ForgotPassword>
 
                 <NaoPossui>

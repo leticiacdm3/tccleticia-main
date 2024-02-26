@@ -9,7 +9,7 @@ import {EventRegister} from 'react-native-event-listeners';
 import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
 import { useColorScheme } from 'react-native';
-import { Container, Icones, Meio, Row, RowLabel, RowSpacer, RowValue, RowWrapper, SairIcon, Section, SectionHeader, SectionHeaderText, Superior, Titulo, VoltIcon, Voltar, Pjc, PjcText } from '../components/estilo/stPerfil';
+import { Container, Icones, Meio, Row, RowLabel, RowSpacer, RowValue, RowWrapper, SairIcon, Section, SectionHeader, SectionHeaderText, Superior, Titulo, VoltIcon, Voltar, Pjc, PjcText, PjcD } from '../components/estilo/stPerfil';
 
 
 export default function Home() {
@@ -28,22 +28,10 @@ export default function Home() {
             header: 'Preferências',
             items: [
                 { id: 'language', icon: 'globe', label: 'Linguagem', type: 'select' },
-                
-            ],
-        },
-        {
-            header: 'Ajuda',
-            items: [
-                { id: 'bug', icon: 'flag', label: 'Reporte um problema', type: 'link' },
-                { id: 'contact', icon: 'envelope-o', label: 'Contate-nos', type: 'link' },
-            ],
-        },
-        {
-            header: 'Conteúdo',
-            items: [
-                { id: 'save', icon: 'save', label: 'Salvo', type: 'link' },
-                { id: 'download', icon: 'download', label: 'Downloads', type: 'link' },
-            ],
+                { id: 'bug', icon: 'lock', label: 'Alterar Senha', type: 'link' },
+                { id: 'contact', icon: 'flag', label: 'Reporte um problema', type: 'link', },
+                { id: 'save', icon: 'file-o', label: 'Termos de uso', type: 'link' },
+                 ],
         },
     ];
     
@@ -111,16 +99,6 @@ export default function Home() {
                                                     {type === 'select' && (
                                                         <RowValue>{form[id]}</RowValue>
                                                     )}
-                                                    {type === 'toggle' && (
-                                                    <Switch
-                                                        value={darkMode}
-                                                        onValueChange={(value) => {
-                                                        setDarkMode(value);
-                                                        EventRegister.emit('ChangeTheme', value);
-                                                        }}
-                                                        
-                                                    />  
-                                                    )}
                                                     {['select', 'link'].includes(type) && (
                                                         <VoltIcon name="chevron-right" size={20}/>
 
@@ -134,13 +112,12 @@ export default function Home() {
                             </Section>
                         ))}
 
-
-
-                        {/* <Text style={styles.nome}>{perfil && perfil.name}</Text> */}
-
                     <Pjc onPress={trySignOut}>
                         <PjcText>SAIR</PjcText>
                     </Pjc>
+                    <PjcD>
+                        <PjcText>Deletar conta</PjcText>
+                    </PjcD>
 
                     </ScrollView>
                 </Meio>
