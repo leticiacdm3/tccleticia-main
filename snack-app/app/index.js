@@ -24,6 +24,7 @@ export default function index() {
       nav.navigate('Casa')
     } 
   }, [])
+ 
 
   const entrarClicado = () => {
     

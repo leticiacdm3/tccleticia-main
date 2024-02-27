@@ -79,10 +79,7 @@ export default function Register() {
     ];
     const [perfil, setPerfil] = useState("");
     const dados = [
-        { key: '1', value: 'Gestor do bar' },
-        { key: '2', value: 'Aluno' },
-        { key: '3', value: 'Responsável' },
-        { key: '4', value: 'Professor ou Funcionário' }
+        { key: '1', value: 'Gestor do bar' }
     ];
 
     if (fontsLoaded) {

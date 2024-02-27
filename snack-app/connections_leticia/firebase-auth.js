@@ -5,7 +5,6 @@ import { initializeAuth, getReactNativePersistence, createUserWithEmailAndPasswo
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 //import { addUserFirestore } from "./firebase-store";
 
-//MANTÉM A SESSAO MESMO APÓS FECHAR E ABRIR O APP
 const auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
 });
@@ -27,17 +26,6 @@ const createUser = async (email, pass, name) => {
             alert("Erro ao criar usuário")
         });
         return userCredential
-    //CHAMA FUNCAO EM firebase-store
-    //addUserFirestore(userCredential, "Leticia Pedrinho", "123.456.789-00","53 9991730000", "27/07/1996")
-
-    // updateProfile(userCredential.user, {
-    //     displayName: name
-    // }).then(() => {
-    //     console.log("Feitorias")
-    // }).catch((error) => {
-    //     console.warn("Deu ruim")
-    //     console.warn(error)
-    // });
 
 }
 
