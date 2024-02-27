@@ -13,9 +13,9 @@ import { auth } from '../connections_leticia/firebase-auth';
 import Swiper from 'react-native-swiper';
 import { Splash } from './Splash';
 
-export default function Home() {
+export default function Home(props) {
     const nav = useNavigation();
-    const [perfil, setPerfil] = useState('');
+
     // const [textProfile, setPerfil] = useState("");
     // useEffect(() => {
     //     fetchPerfil();
@@ -31,7 +31,7 @@ export default function Home() {
   
     useEffect(() => {
       if (auth && auth.currentUser) {
-        console.log(auth.currentUser)
+        console.log(auth().currentUser)
         nav.navigate('Casa')
       } 
     }, [])

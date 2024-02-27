@@ -19,11 +19,8 @@ export default function index() {
   });
 
   useEffect(() => {
-    if (auth && auth.currentUser) {
-      console.log(auth().currentUser)
-      nav.navigate('Casa')
-    } 
-  }, [])
+    fetchProfile();
+  }, []);
  
 
   const entrarClicado = () => {
