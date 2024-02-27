@@ -19,8 +19,11 @@ export default function index() {
   });
 
   useEffect(() => {
-    fetchProfile();
-  }, []);
+    if (auth && auth.currentUser) {
+      console.log(auth.currentUser)
+      nav.navigate('Casa')
+    } 
+  }, [])
  
 
   const entrarClicado = () => {

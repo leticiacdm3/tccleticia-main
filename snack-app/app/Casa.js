@@ -16,7 +16,7 @@ import { Splash } from './Splash';
 export default function Home(props) {
     const nav = useNavigation();
 
-    // const [textProfile, setPerfil] = useState("");
+    const [perfil, setPerfil] = useState("");
     // useEffect(() => {
     //     fetchPerfil();
     // }, []);
@@ -31,7 +31,7 @@ export default function Home(props) {
   
     useEffect(() => {
       if (auth && auth.currentUser) {
-        console.log(auth().currentUser)
+        console.log(auth.currentUser)
         nav.navigate('Casa')
       } 
     }, [])
