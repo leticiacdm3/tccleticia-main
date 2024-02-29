@@ -46,7 +46,6 @@ export default function Home(props) {
     }, [])
 
     const deviceTheme = useColorScheme();
-
     const theme = themes[deviceTheme] || theme.dark;
 
     const [fontsLoaded] = useFonts({
@@ -95,7 +94,7 @@ export default function Home(props) {
                             <Swiper
                                 showsButtons={true}
                                 autoplay={true}
-                                autoplayTimeout={10}
+                                autoplayTimeout={2}
                                 activeDotColor='#fff'
                             >
                                 <Vswiper>

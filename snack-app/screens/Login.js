@@ -107,7 +107,7 @@ export default function Login() {
         marginTop: 100
       },
       darkbg:{
-        backgroundColor: '#6D458B'
+        backgroundColor: '#00BF63'
       },
       loginMsg:{
         fontWeight: 'bold',
@@ -142,7 +142,7 @@ export default function Login() {
       loginButtonText:{
         fontWeight: 'bold',
         fontSize: 20,
-        color: '#6D458B',
+        color: '#00BF63',
         textAlign: 'center',
       }
 

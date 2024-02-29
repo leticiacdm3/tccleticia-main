@@ -16,7 +16,7 @@ export default function Splash() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#6d458b',
+    backgroundColor: '#00BF63',
     alignItems: 'center',
     justifyContent: 'center',
   },

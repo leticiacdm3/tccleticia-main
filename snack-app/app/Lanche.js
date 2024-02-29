@@ -35,13 +35,13 @@ export default function Pagamento() {
 
             <View style={styles.inferior}>
                 <TO style={styles.casa} onPress={() => nav.navigate('Casa')}>
-                    <SimpleLineIcons name={'home'} size={30} color='white' />
+                    <SimpleLineIcons name={'home'} size={30} color='black' />
                 </TO>
                 <TO style={styles.menu} onPress={() => nav.navigate('Cardapio')}>
-                    <Ionicons name={'fast-food-outline'} size={30} color='white' />
+                    <Ionicons name={'fast-food-outline'} size={30} color='black' />
                 </TO>
                 <TO style={styles.dinheiro} onPress={() => nav.navigate('ToDoList')} >
-                    <FontAwesome name={'dollar'} size={30} color='white' />
+                    <FontAwesome name={'dollar'} size={30} color='black' />
                 </TO>
             </View>
 
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         height: '10%',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#6D458B',
+        backgroundColor: '#00BF63',
         flexDirection: 'row',
     },
     meio: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#011837',
+        backgroundColor: 'white',
         paddingTop: 80,
     },
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        backgroundColor: '#001127',
+        backgroundColor: '#F4F4F4',
 
     },
     voltar: {

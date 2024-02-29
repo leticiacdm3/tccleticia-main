@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { useEffect, useState } from 'react';
 import Field from '../components/Field';
 import { useFonts } from 'expo-font';
@@ -8,7 +8,7 @@ import { useNavigation } from 'expo-router';
 import { emailLogin, auth } from "../connections_leticia/firebase-auth";
 import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
-import { useColorScheme } from 'react-native'; 
+import { useColorScheme } from 'react-native';
 import { Container, ForgotPassword, ForgotPasswordText, Inferior, NaoPossui, NaoPossuiCadastre, NotYet, LoginForm, LoginButton, ButtonLogin, ButtonLoginText, LoginButtonText } from '../components/estilo/stEntrar';
 
 
@@ -45,7 +45,7 @@ export default function Entrar() {
       nav.navigate('Casa')
     }
   }, [])
-  
+
   const deviceTheme = useColorScheme();
   const theme = themes[deviceTheme] || theme.dark;
 
@@ -53,52 +53,52 @@ export default function Entrar() {
     return (
       <>
         <ThemeProvider theme={theme}>
-        <Container>
-          <View>
+          <Container>
             <View>
-              { deviceTheme === 'dark'
-              ?
-              <Image style={styles.image} source={imgSource} />
-              :
-              <Image style={styles.image} source={require('../assets/logoclaro.png')} />
-              }
-              
-            </View>
-
-            <Inferior>
-              <LoginForm>
-                <Field label='E-MAIL' icon='user' value={email} setText={setEmail} />
-                <Password labelpass='SENHA' ipassword='lock' value={pass} setSenha={setPass} />
-                { email === "" || pass === "" 
-                ? 
-                <ButtonLogin
-                disabled={true}
-                
-                > 
-                <ButtonLoginText>ENTRAR</ButtonLoginText>
-                </ButtonLogin>
-                :
-                <LoginButton
-                  onPress={tryLogin} >
-                  <LoginButtonText>ENTRAR</LoginButtonText>
-                </LoginButton>
+              <View>
+                {deviceTheme === 'dark'
+                  ?
+                  <Image style={styles.image} source={imgSource} />
+                  :
+                  <Image style={styles.image} source={require('../assets/logoclaro.png')} />
                 }
-                
 
-                <ForgotPassword>
-                  <ForgotPasswordText onPress={replacePass}>Esqueceu sua senha?</ForgotPasswordText>
-                </ForgotPassword>
+              </View>
 
-                <NaoPossui>
-                  <NotYet>Ainda não possui conta? </NotYet>
-                  <TouchableOpacity onPress={() => nav.navigate('Register')}>
-                    <NaoPossuiCadastre>CADASTRE-SE</NaoPossuiCadastre>
-                  </TouchableOpacity>
-                </NaoPossui>
-              </LoginForm>
-            </Inferior>
-          </View>
-        </Container>
+              <Inferior>
+                <LoginForm>
+                  <Field label='E-MAIL' icon='user' value={email} setText={setEmail} />
+                  <Password labelpass='SENHA' ipassword='lock' value={pass} setSenha={setPass} />
+                  {email === "" || pass === ""
+                    ?
+                    <ButtonLogin
+                      disabled={true}
+
+                    >
+                      <ButtonLoginText>ENTRAR</ButtonLoginText>
+                    </ButtonLogin>
+                    :
+                    <LoginButton
+                      onPress={tryLogin} >
+                      <LoginButtonText>ENTRAR</LoginButtonText>
+                    </LoginButton>
+                  }
+
+
+                  <ForgotPassword>
+                    <ForgotPasswordText onPress={replacePass}>Esqueceu sua senha?</ForgotPasswordText>
+                  </ForgotPassword>
+
+                  <NaoPossui>
+                    <NotYet>Ainda não possui conta? </NotYet>
+                    <TouchableOpacity onPress={() => nav.navigate('Register')}>
+                      <NaoPossuiCadastre>CADASTRE-SE</NaoPossuiCadastre>
+                    </TouchableOpacity>
+                  </NaoPossui>
+                </LoginForm>
+              </Inferior>
+            </View>
+          </Container>
         </ThemeProvider>
 
       </>
@@ -118,6 +118,6 @@ const styles = StyleSheet.create({
     paddingBottom: 300,
     marginTop: 100
   },
-  
+
 
 })

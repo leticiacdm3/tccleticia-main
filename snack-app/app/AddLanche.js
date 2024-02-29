@@ -7,16 +7,15 @@ import * as imagePicker from 'expo-image-picker';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { storage, db, getStorage } from "../connections_leticia/firebase-store";
-import { addLancheFirestore } from '../connections_leticia/firebase-store'; 
+import { addLancheFirestore } from '../connections_leticia/firebase-store';
 import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
-import { useColorScheme } from 'react-native'; 
+import { useColorScheme } from 'react-native';
 import { Botao, Container, Icone, Icone2, Input, Meio, Superior, Txt, TxtAddImg } from '../components/estilo/stAddLanche';
 
 export default function AddLanche() {
     const [image, setImage] = useState('https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg')
     const [url, setUrl] = useState("");
-
     const [nomeProduto, setNomeProduto] = useState('');
     const [valor, setValor] = useState('');
     const [descrição, setDescrição] = useState('');
@@ -25,9 +24,9 @@ export default function AddLanche() {
     const theme = themes[deviceTheme] || theme.dark;
 
     const tryCreateProduct = async () => {
-       await addLancheFirestore(nomeProduto, valor, descrição, imagem);
-       nav.navigate('Cardapio')
-    }
+        await addLancheFirestore(nomeProduto, valor, descrição, imagem);
+        nav.navigate('Cardapio')
+    } 
 
     const handleImagePicker = async () => {
         const result = await imagePicker.launchImageLibraryAsync({
@@ -43,25 +42,11 @@ export default function AddLanche() {
             await uploadImage(result.assets[0].uri, "image")
         }
     };
-    async function uploadImage(uri, fileType) {
+    async function uploadImage(uri) {
         const response = await fetch(uri);
         const blob = await response.blob();
         const storageRef = ref(storage, "Stuff/" + new Date().getTime());
         setImagem(storageRef.fullPath)
-
-        const uploadTask = await uploadBytesResumable(storageRef, blob);
-        // uploadTask.on(
-        //     async () => {
-        //         console.log('6')
-        //         await getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-        //             console.log("Arquivo disponível em", downloadURL);
-        //             await saveRecord(fileType, downloadURL, new Date().toISOString());
-        //             setImage("");
-        //         });
-        //     }
-        // );
-        console.log('7',storageRef.fullPath)
-
     }
 
     async function saveRecord(fileType, url, createdAt) {
@@ -79,32 +64,32 @@ export default function AddLanche() {
     const nav = useNavigation();
     return (
         <ThemeProvider theme={theme}>
-        <Container>
-            <Superior>
-                <TouchableOpacity >
-                    <Icone name={'chevron-left'} size={30} onPress={() => nav.navigate('Cardapio')} />
-                </TouchableOpacity>
-            </Superior>
-            <Meio>
+            <Container>
+                <Superior>
+                    <TouchableOpacity >
+                        <Icone name={'chevron-left'} size={30} onPress={() => nav.navigate('Cardapio')} />
+                    </TouchableOpacity>
+                </Superior>
+                <Meio>
 
-                <Txt>Nome do produto</Txt>
-                <Input text={nomeProduto} onChangeText={(text) => setNomeProduto(text)}/>
+                    <Txt>Nome do produto</Txt>
+                    <Input text={nomeProduto} onChangeText={(text) => setNomeProduto(text)} />
 
-                <Txt>Valor</Txt>
-                <Input text={valor} onChangeText={(text) => setValor(text)} keyboardType="numeric"/>
+                    <Txt>Valor</Txt>
+                    <Input text={valor} onChangeText={(text) => setValor(text)} keyboardType="numeric" />
 
-                <Botao onPress={handleImagePicker}>
-                    <Icone2 name="plus-circle-outline" size={20} marginRight={10} />
-                    <TxtAddImg>ADICIONAR IMAGEM</TxtAddImg>
-                </Botao>
-                <View style={styles.imagem}>
-                    <Image source={{ uri: image }} style={{ width: 190, height: 190 }} />
-                </View>
-                <TouchableOpacity style={styles.botaoSave} onPress={tryCreateProduct}>
-                    <Text style={{color:'white'}}>SALVAR LANCHE</Text>
-                </TouchableOpacity>
-            </Meio>
-        </Container>
+                    <Botao onPress={handleImagePicker}>
+                        <Icone2 name="plus-circle-outline" size={20} marginRight={10}/>
+                        <TxtAddImg>ADICIONAR IMAGEM</TxtAddImg>
+                    </Botao>
+                    <View style={styles.imagem}>
+                        <Image source={{ uri: image }} style={{ width: 190, height: 190 }} />
+                    </View>
+                    <TouchableOpacity style={styles.botaoSave} onPress={tryCreateProduct}>
+                        <Text style={{ color: 'white' }}>SALVAR LANCHE</Text>
+                    </TouchableOpacity>
+                </Meio>
+            </Container>
         </ThemeProvider>
     )
 }
@@ -114,7 +99,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#011837'
+        backgroundColor: 'WHITE',
     },
 
     input: {
@@ -183,7 +168,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    botaoSave:{
+    botaoSave: {
         alignSelf: 'center',
         marginTop: 30,
         marginBottom: 20,
@@ -195,7 +180,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: 10
     },
-    }
+}
 
 )
 

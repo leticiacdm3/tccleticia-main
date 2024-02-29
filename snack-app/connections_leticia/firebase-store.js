@@ -7,18 +7,16 @@ import { getStorage, ref } from "firebase/storage";
 import { getDocs } from "firebase/firestore";
 
 export const db = getFirestore(app);
-
 const storage = getStorage(app);
-const addUserFirestore = async (userCredential, name, cpf, phone, birthDate, estado, perfil) => {
+
+const addUserFirestore = async ( name, phone, estado, perfil) => {
     const uid = auth.currentUser.uid;
     const data = {
         name: name,
-        cpf: cpf,
         phone: phone,
-        birthDate: birthDate,
         state: estado,
         profile: perfil
- 
+
     }
     console.log(data)
     return await setDoc(doc(db, "usuarios", uid), data);
@@ -26,7 +24,6 @@ const addUserFirestore = async (userCredential, name, cpf, phone, birthDate, est
 }
 
 const addLancheFirestore = async (nomeProduto, valor, descrição, imagem) => {
-
     const data = {
         productName: nomeProduto,
         value: valor,

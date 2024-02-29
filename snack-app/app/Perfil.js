@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch, Linking} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, Switch, Linking, Alert } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect, useState } from 'react';
 import { signOutFirebase } from '../connections_leticia/firebase-auth';
 import { getPerfilFromUid } from '../connections_leticia/firebase-store';
 import { auth } from '../connections_leticia/firebase-auth';
-import {EventRegister} from 'react-native-event-listeners';
+import { EventRegister } from 'react-native-event-listeners';
 import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
 import { useColorScheme } from 'react-native';
@@ -14,14 +14,28 @@ import { Container, Icones, Meio, Row, RowLabel, RowSpacer, RowValue, RowWrapper
 
 export default function Home() {
     const [form, setForm] = useState({
-        language: 'Português', 
+        language: 'Português',
     });
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;
     const nav = useNavigation();
     const [darkMode, setDarkMode] = useState(false);
 
-
+    function handleDeletePress(){ 
+        Alert.alert(
+            "Atenção",
+            "Você tem certeza que deseja excluir este item?",
+            [
+                {
+                text: "Não",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+                },
+                { text: "Sim", onPress: () => console.log(`deleted`) }
+            ],
+            { cancelable: false }
+            );
+        }
 
     const SECTIONS = [
         {
@@ -29,12 +43,13 @@ export default function Home() {
             items: [
                 { id: 'language', icon: 'globe', label: 'Linguagem', type: 'select' },
                 { id: 'bug', icon: 'lock', label: 'Alterar Senha', type: 'link' },
+                { id: 'changeMail', icon: 'envelope', label: 'Alterar e-mail', type: 'link', },
                 { id: 'contact', icon: 'flag', label: 'Reporte um problema', type: 'link', },
                 { id: 'save', icon: 'file-o', label: 'Termos de uso', type: 'link' },
-                 ],
+            ],
         },
     ];
-    
+
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
@@ -59,70 +74,70 @@ export default function Home() {
     if (fontsLoaded) {
         return (
             <ThemeProvider theme={theme}>
-            <Container>
-                <Superior>
-                    <Voltar>
-                        <SairIcon name={'chevron-left'} size={30} onPress={() => nav.navigate('entrar')} />
-                    </Voltar>
-                    <Titulo>CONFIGURAÇÕES</Titulo>
-                </Superior>
+                <Container>
+                    <Superior>
+                        <Voltar>
+                            <SairIcon name={'chevron-left'} size={30} onPress={() => nav.navigate('entrar')} />
+                        </Voltar>
+                        <Titulo>CONFIGURAÇÕES</Titulo>
+                    </Superior>
 
-                <Meio>
-                    <ScrollView>
-                        {SECTIONS.map(({ header, items }) => (
-                            <Section key={header}>
-                                <SectionHeader>
-                                    <SectionHeaderText>{header}</SectionHeaderText>
-                                </SectionHeader>
+                    <Meio>
+                        <ScrollView>
+                            {SECTIONS.map(({ header, items }) => (
+                                <Section key={header}>
+                                    <SectionHeader>
+                                        <SectionHeaderText>{header}</SectionHeaderText>
+                                    </SectionHeader>
 
-                                <View>
-                                    {items.map(({ label, id, type, icon }, index) => (
-                                        <RowWrapper style={[
-                                            index === 0 && { borderTopWidth: 0 },
-                                        ]}
-                                            key={id}
-                                        >
-                                            <TO
-                                                onPress={() => {
-                                                    //handle press
-                                                }}>
-                                                <Row>
-                                                    <Icones
-                                                        name={icon}  
-                                                        size={22}
-                                                        style={{ marginRight: 12 }}
-                                                    />
+                                    <View>
+                                        {items.map(({ label, id, type, icon }, index) => (
+                                            <RowWrapper style={[
+                                                index === 0 && { borderTopWidth: 0 },
+                                            ]}
+                                                key={id}
+                                            >
+                                                <TO
+                                                    onPress={() => {
+                                                        //handle press
+                                                    }}>
+                                                    <Row>
+                                                        <Icones
+                                                            name={icon}
+                                                            size={22}
+                                                            style={{ marginRight: 12 }}
+                                                        />
 
-                                                    <RowLabel>{label}</RowLabel>
-                                                    
-                                                    <RowSpacer/>
-                                                    {type === 'select' && (
-                                                        <RowValue>{form[id]}</RowValue>
-                                                    )}
-                                                    {['select', 'link'].includes(type) && (
-                                                        <VoltIcon name="chevron-right" size={20}/>
+                                                        <RowLabel>{label}</RowLabel>
 
-                                                    )}
-                                                </Row>
-                                            </TO>
-                                        </RowWrapper>
-                                    ))}
-                                </View>
+                                                        <RowSpacer />
+                                                        {type === 'select' && (
+                                                            <RowValue>{form[id]}</RowValue>
+                                                        )}
+                                                        {['select', 'link'].includes(type) && (
+                                                            <VoltIcon name="chevron-right" size={20} />
 
-                            </Section>
-                        ))}
+                                                        )}
+                                                    </Row>
+                                                </TO>
+                                            </RowWrapper>
+                                        ))}
+                                    </View>
 
-                    <Pjc onPress={trySignOut}>
-                        <PjcText>SAIR</PjcText>
-                    </Pjc>
-                    <PjcD>
-                        <PjcText>Deletar conta</PjcText>
-                    </PjcD>
+                                </Section>
+                            ))}
 
-                    </ScrollView>
-                </Meio>
+                            <Pjc onPress={trySignOut}>
+                                <PjcText>SAIR</PjcText>
+                            </Pjc>
+                            <PjcD onPress={handleDeletePress}>
+                                <PjcText>Deletar conta</PjcText>
+                            </PjcD>
 
-            </Container>
+                        </ScrollView>
+                    </Meio>
+
+                </Container>
             </ThemeProvider>
         );
     }
@@ -139,14 +154,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         flexDirection: 'row',
-        backgroundColor: '#011837',
+        backgroundColor: 'white',
     },
     meio: {
         width: '100%',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor:'#011837' ,
+        backgroundColor: 'white',
     },
 
     inferior: {
@@ -155,7 +170,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        backgroundColor: '#011837',
+        backgroundColor: 'white',
 
     },
     voltar: {
@@ -226,7 +241,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: 'white'
     },
-    rowSpacer:{
+    rowSpacer: {
         flex: 1
     },
     rowValue: {

@@ -1,5 +1,5 @@
 
-import {app} from "./firebase-app"
+import { app } from "./firebase-app"
 //import { getAnalytics } from "firebase/analytics";
 import { initializeAuth, getReactNativePersistence, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,20 +12,20 @@ const auth = initializeAuth(app, {
 
 const emailLogin = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
-        .catch(error => { 
-            console.log('ERRO:',error)
+        .catch(error => {
+            console.log('ERRO:', error)
             return null
         });
     return userCredential
 }
 
 
-const createUser = async (email, pass, name) => {
+const createUser = async (email, pass) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, pass)
         .catch((error) => {
             alert("Erro ao criar usuário")
         });
-        return userCredential
+    return userCredential
 
 }
 
@@ -38,8 +38,10 @@ const signOutFirebase = async () => {
 }
 
 //EXPORTA O OBJETI DO APP (DESNECESSARIAMENTE, NA VERDADE), O DE AUTENTICACAO E AS TRES FUNCOES CRIADAS
-export { app, 
-    auth, 
-    emailLogin, 
-    createUser, 
-    signOutFirebase }
+export {
+    app,
+    auth,
+    emailLogin,
+    createUser,
+    signOutFirebase
+}

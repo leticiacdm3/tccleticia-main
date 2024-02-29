@@ -1,9 +1,25 @@
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 export default (props) => {
     
+    function handleDeletePress(){ 
+        Alert.alert(
+            "Atenção",
+            "Você tem certeza que deseja excluir este item?",
+            [
+                {
+                text: "Não",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+                },
+                { text: "Sim", onPress: () => console.log(`deleted`) }
+            ],
+            { cancelable: false }
+            );
+        }
+
     const titulo = props.titulo || 'Sem título';
     const preco = props.preco || 'Sem preço';
     const imagem = 'https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg';
@@ -22,7 +38,7 @@ export default (props) => {
             </View>
 
             <View style={styles.carrinho}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleDeletePress}>
                 <FontAwesome5 name={'trash-alt'} size={25} color='white' />
                 </TouchableOpacity>
             </View>
@@ -32,7 +48,7 @@ export default (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#6D458B',
+        backgroundColor: '#00BF63',
         width: 380,
         height: 100,
         borderRadius: 20,

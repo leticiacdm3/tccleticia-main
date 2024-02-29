@@ -37,7 +37,7 @@ export default function Clientes() {
         
     const Item = ({ title }) => (
         <View style={{ 
-            backgroundColor: "#6D458B", 
+            backgroundColor: "#00BF63", 
             borderRadius: 6, 
             paddingHorizontal: 6, 
             paddingVertical: 12, 
@@ -83,7 +83,7 @@ export default function Clientes() {
                     onChangeText={(userText)=>setTodo(userText)}
                     />
                     <TouchableOpacity style={{
-                        backgroundColor: '#6D458B',
+                        backgroundColor: '#00BF63',
                         borderRadius: 6,
                         paddingVertical: 8,
                         marginHorizontal: 10,
@@ -109,13 +109,13 @@ export default function Clientes() {
 
                 <View style={styles.inferior}>
                     <TO style={styles.casa} onPress={() => nav.navigate('Casa')}>
-                        <SimpleLineIcons name={'home'} size={30} color='white' />
+                        <SimpleLineIcons name={'home'} size={30} color='black' />
                     </TO>
                     <TO style={styles.menu} onPress={() => nav.navigate('Cardapio')}>
-                        <Ionicons name={'fast-food-outline'} size={30} color='white' />
+                        <Ionicons name={'fast-food-outline'} size={30} color='black' />
                     </TO>
                     <TO style={styles.dinheiro} >
-                        <FontAwesome name={'dollar'} size={30} color='white' />
+                        <FontAwesome name={'dollar'} size={30} color='black' />
                     </TO>
                 </View>
 
@@ -134,14 +134,14 @@ const styles = StyleSheet.create({
         height: '10%',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#6D458B',
+        backgroundColor: '#00BF63',
         flexDirection: 'row'
     },
     meio: {
         width: '100%',
         height: '100%',
         flex: 1,
-        backgroundColor: '#011837',
+        backgroundColor: 'white',
         marginHorizontal: 16,
     },
 
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        backgroundColor: '#001127',
+        backgroundColor: '#F4F4F4',
 
     },
     voltar: {

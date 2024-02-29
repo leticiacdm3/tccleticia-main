@@ -3,11 +3,18 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation, useRouter } from 'expo-router';
 import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import Lanchinhos from '../components/Lanchinhos';
 import { getLanches, storage, getImgLanche } from '../connections_leticia/firebase-store';
+import { AddLanche, AddLancheText, BottomIcon, Container, Inferior, Meinho, Meio, Superior, User, Userr, Voltar } from '../components/estilo/stCardapio';
+import themes from '../components/themes';
+import { useColorScheme } from 'react-native';
+import { ThemeProvider } from 'styled-components';
 
 export default function Cardapio() {
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
+
     const nav = useNavigation();
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
@@ -15,7 +22,7 @@ export default function Cardapio() {
     }); 
 
     const [lanches, setLanches] = useState([])
-
+    
     useEffect(() => {
         initial();
     }, []);
@@ -25,28 +32,27 @@ export default function Cardapio() {
         setLanches(l);
     }
 
-
-    // if (fontsLoaded) {
+    
     return (
-        <View style={styles.container}>
-            <View style={styles.superior}>
-                <TO style={styles.voltar}>
+        <ThemeProvider theme={theme}>
+        <Container>
+            <Superior>
+                <Voltar>
                     <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('Casa')} />
-                </TO>
-                <Text style={styles.topHome}></Text>
+                </Voltar>
 
-                <TO style={styles.user}>
+                <User>
                     <AntDesign name={'shoppingcart'} size={30} color='white'/>
-                </TO>
-                <TO style={styles.userr}>
+                </User>
+                <Userr>
                     <Icon name={'user'} size={25} color='white' onPress={() => nav.navigate('Perfil')} />
-                </TO>
+                </Userr>
                 
-            </View>
+            </Superior>
 
-            <View style={styles.meio}>
-                <ScrollView style={styles.meinho}>
-                <Lanchinhos/>
+            <Meio>
+                <Meinho>
+                
                 {
                     lanches && lanches.map((l, i) => {
                         return (
@@ -54,31 +60,31 @@ export default function Cardapio() {
                         )
                     })
                 }
-                    <TO style={styles.addLanche} onPress={()=> nav.navigate('AddLanche')}>
+                    <AddLanche onPress={()=> nav.navigate('AddLanche')}>
                         <AntDesign name={'pluscircleo'} size={30} color='white'/>
-                        <Text style={styles.addLancheText}> ADICIONAR LANCHES </Text>
-                    </TO>
-                </ScrollView>
-            </View>
+                        <AddLancheText> ADICIONAR LANCHES </AddLancheText>
+                    </AddLanche>
+                </Meinho>
+            </Meio>
 
-            <View style={styles.inferior}>
+            <Inferior>
                 <TO style={styles.casa} onPress={() => nav.navigate('Casa')}>
-                    <SimpleLineIcons name={'home'} size={30} color='white' />
+                    <BottomIcon name={'home'} size={30} />
                 </TO>
                 <TO style={styles.menu} >
-                    <Ionicons name={'fast-food-outline'} size={30} color='white' />
+                    <BottomIcon name={'food'} size={30} />
                 </TO>
                 <TO style={styles.dinheiro} onPress={() => nav.navigate('ToDoList')}>
-                    <FontAwesome name={'dollar'} size={30} color='white' />
+                    <BottomIcon name={'cash'} size={30} />
                 </TO>
                 
-            </View>
+            </Inferior>
 
-        </View>
+        </Container>
+        </ThemeProvider>
     );
-// }
-
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
         height: '10%',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#6D458B',
+        backgroundColor: '#00BF63',
         flexDirection: 'row'
     },
     meio: {
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#011837',
+        backgroundColor: 'white',
 
     },
 
@@ -108,7 +114,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        backgroundColor: '#001127',
+        backgroundColor: '#F4F4F4',
 
     },
     voltar: {
@@ -116,15 +122,8 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginTop: 30
     },
-    topHome:{
-        fontFamily: 'Montserrat-Regular',
-        fontSize: 30,
-        paddingLeft: 85,
-        color: 'white',
-        marginTop: 10
-    },
     user:{
-        paddingLeft: 203.4,
+        paddingLeft: 275,
         marginTop: 10,
         marginRight: 15,
         
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     addLanche:{
-        backgroundColor: '#6D458B',
+        backgroundColor: '#00BF63',
         width: 250,
         height: 50,
         borderRadius: 30,

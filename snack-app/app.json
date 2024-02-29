@@ -1,5 +1,10 @@
 {
   "expo": {
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#4C1C83"
+  },
     "scheme": "acme",
     "userInterfaceStyle": "automatic",
     "web": {

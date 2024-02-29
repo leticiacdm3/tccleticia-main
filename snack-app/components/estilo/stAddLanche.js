@@ -93,9 +93,9 @@ export const Icone = styled(Icon)`
     color: ${({theme}) => theme.topColor};
 `;
 export const Icone2 = styled(Icon)`
-    color: ${({theme}) => theme.color};
+    color: ${({theme}) => theme.colorIcone2};
 `;
 export const TxtAddImg = styled.Text`
-    color: ${({theme}) => theme.iColor};
+    color: ${({theme}) => theme.bottomColor};
 
 `;

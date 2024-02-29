@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import Splash from './Splash'
-import { useNavigation} from 'expo-router';
-import {auth} from '../connections_leticia/firebase-app';
+import { useNavigation } from 'expo-router';
+import { auth } from '../connections_leticia/firebase-app';
 import { ThemeProvider } from 'styled-components'
 import themes from '../components/themes'
 import { useColorScheme } from 'react-native';
@@ -20,14 +20,10 @@ export default function index() {
 
   useEffect(() => {
     if (auth && auth.currentUser) {
-      console.log(auth.currentUser)
       nav.navigate('Casa')
-    } 
+    }
   }, [])
- 
-
   const entrarClicado = () => {
-    
     nav.navigate('entrar')
   }
 
@@ -35,27 +31,27 @@ export default function index() {
     return (
       <>
         <ThemeProvider theme={theme}>
-        <Container>
+          <Container>
 
-          <Snack>SEJA BEM-VINDO</Snack>
-          <Tela>
-            <RegisterButton onPress={() => nav.navigate('Register')}>
-              <RegisterButtonText>CADASTRAR</RegisterButtonText>
-            </RegisterButton>
+            <Snack>SEJA BEM-VINDO</Snack>
+            <Tela>
+              <RegisterButton onPress={() => nav.navigate('Register')}>
+                <RegisterButtonText>CADASTRAR</RegisterButtonText>
+              </RegisterButton>
 
-            <EnterButton onPress={entrarClicado}>
-              <EnterButtonText>ENTRAR</EnterButtonText>
-            </EnterButton>
+              <EnterButton onPress={entrarClicado}>
+                <EnterButtonText>ENTRAR</EnterButtonText>
+              </EnterButton>
 
-          </Tela>
-        </Container>
-      </ThemeProvider>
+            </Tela>
+          </Container>
+        </ThemeProvider>
 
       </>
 
     );
   }
   else {
-    return <Splash/>
+    return <Splash />
   }
 }

@@ -5,16 +5,16 @@ export default {
     bottomColor: '#F4F4F4',
     iColor: 'black',
     bgIndex: '#00BF63',
-    colorIndex: '#6D458B',
+    colorIndex: '#4C1C83',
     textColorIndex: '#00BF63',
     bgEnterIndex: '#44DB95',
     bgRegister: '#00BF63',
     bgMeioRegister: '#35C682',
-    bgRegisterButtton: '#6D458B',
+    bgRegisterButtton: '#4C1C83',
     colorRegisterButton: '#00BF63',
-    colorTextCadastro: '#6D458B',
+    colorTextCadastro: '#4C1C83',
     colorNotYet: 'black',
-    colorNaoPossuiCadastre: '#6D458B',
+    colorNaoPossuiCadastre: '#4C1C83',
     bgPerfil: '#E5E2E2',
     colorPerfil: 'white',
     bgRow: '#EFEEEE',
@@ -22,5 +22,6 @@ export default {
     colorIcones: 'black',
     colorVoltIcon: 'black', 
     bgAdd: 'gray',
+    colorIcone2: 'white'
     
 }

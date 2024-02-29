@@ -153,7 +153,7 @@ marginTop: 50px;
 export const PjcText = styled.Text`
 fontWeight: 500;
 color: ${props => props.theme.colorPerfil};
-fontSize: 20px;
+fontSize: 20px; 
 `;
 
 export const PjcD = styled.TouchableOpacity`
@@ -164,5 +164,5 @@ borderRadius: 10px;
 align-items: center;
 justify-content: center;
 alignSelf: center;
-marginTop: 8px;
+marginTop: 190px;
 `;
