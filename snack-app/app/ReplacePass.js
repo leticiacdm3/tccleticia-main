@@ -3,11 +3,16 @@ import { useState } from 'react';
 import { useNavigation } from 'expo-router';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../connections_leticia/firebase-auth';
-
+import { ThemeProvider } from 'styled-components';
+import themes from '../components/themes';
+import { useColorScheme } from 'react-native';
+import { Container, FormInput, FormTitle, SendButton, SendButtonText, SubContainer, Textcc } from '../components/estilo/stReplacePass';
 
 export default function ReplacePass() {
     const [userMail, setUserMail] = useState('');
     const nav = useNavigation();
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
 
     const replacePass = async () => {
         if (userMail !== '') {
@@ -28,32 +33,33 @@ export default function ReplacePass() {
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.formTitle}>Redefinição de Senha</Text>
-            <TextInput
-                style={styles.formInput}
+        <ThemeProvider theme={theme}>
+        <Container>
+            <FormTitle>Redefinição de Senha</FormTitle>
+            <FormInput
                 placeholder='Digite seu e-mail'
                 keyboardType='email-address'
                 autoCapitalize='none'
                 autoComplete='email'
                 value={userMail}
                 onChangeText={setUserMail}
-                placeholderTextColor={'black'}
+                placeholderTextColor={'gray'}
+                color={'white'}
             />
-            <TouchableOpacity
-                style={styles.sendButton}
+            <SendButton
                 onPress={replacePass}
             >
-                <Text style={styles.sendButtonText}>Enviar</Text>
-            </TouchableOpacity>
-            <View style={styles.subContainer}>
+                <SendButtonText>Enviar</SendButtonText>
+            </SendButton>
+            <SubContainer>
                 <TouchableOpacity
                     onPress={() => nav.navigate('entrar')}
                 >
-                    <Text style={{color: 'black'}}>Voltar</Text>
+                    <Textcc>Voltar</Textcc>
                 </TouchableOpacity>
-            </View>
-        </View>
+            </SubContainer>
+        </Container>
+        </ThemeProvider>
     )
 }
 

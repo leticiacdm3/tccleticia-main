@@ -31,6 +31,8 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [passC, setPassC] = useState('');
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
 
     const tryCreateUser = async () => {
        if (pass != passC) {
@@ -45,8 +47,8 @@ export default function Register() {
             alert('Erro ao criar usuário');
         }
     }
-    const deviceTheme = useColorScheme();
-    const theme = themes[deviceTheme] || theme.dark;
+    
+
     const [estado, setEstado] = useState("");
     const data = [
         { key: '1', value: 'Acre', disabled: true },
