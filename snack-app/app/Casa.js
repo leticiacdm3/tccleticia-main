@@ -4,7 +4,7 @@ import { useNavigation } from 'expo-router';
 import { SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useState, useEffect } from 'react';
-import { Container, Name, Description, Meio, Superior, Inferior, TopHome, User, Userr, BottomTO, BottomIcon, Vswipe, Vswiper, Tnome, Tnome2, Vimg, Tvalnutri, Tkcal } from '../components/estilo/stHome.js'
+import { Container, Name, Description, Meio, Superior, Inferior, TopHome, User, Userr, BottomTO, BottomIcon, Vswipe, Vswiper, Tnome, Tnome2, Vimg, Tvalnutri, Tkcal, BotaoClicado } from '../components/estilo/stHome.js'
 import { ThemeProvider } from 'styled-components'
 import themes from '../components/themes'
 import { useColorScheme } from 'react-native';
@@ -18,7 +18,7 @@ export default function Home(props) {
 
     const [perfil, setPerfil] = useState("");
     // useEffect(() => {
-    //     fetchPerfil();
+    //     fetchPerfil(); 
     // }, []);
     // const fetchPerfil = async () => {
     // const uid = auth.currentUser.uid;
@@ -224,7 +224,7 @@ export default function Home(props) {
 
                     <Inferior>
                         <TO>
-                            <BottomIcon name={'home'} size={35} />
+                            <BotaoClicado name={'home'} size={40} />
                         </TO>
                         <TO onPress={() => nav.navigate('Cardapio')}>
                             <BottomIcon name={'food'} size={30} />

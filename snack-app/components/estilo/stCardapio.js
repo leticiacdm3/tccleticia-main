@@ -66,7 +66,7 @@ export const AddLanche = styled.TouchableOpacity`
 export const AddLancheText = styled.Text`
     fontFamily: 'Montserrat-Regular';
     fontSize: 15px;
-    color: ${({theme}) => theme.color};
+    color: white;
     padding-left: 10px;
 `;
 
@@ -76,4 +76,8 @@ export const Meinho = styled.ScrollView`
 
 export const BottomIcon = styled(Icon)`
 color: ${props => props.theme.iColor};
+`;
+
+export const BotaoClicado = styled(Icon)    `
+color: ${({theme}) => theme.topColor}; 
 `;

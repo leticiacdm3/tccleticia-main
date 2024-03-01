@@ -1,9 +1,15 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import themes from './themes';
+import { useColorScheme } from 'react-native';
+import { ThemeProvider } from 'styled-components';
+import { Carrinho, Container, MoneyText, TextFood, Vimg, Vtxt } from './estilo/stLanchinhos';
 
 export default (props) => {
-    
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
+
     function handleDeletePress(){ 
         Alert.alert(
             "Atenção",
@@ -23,28 +29,32 @@ export default (props) => {
     const titulo = props.titulo || 'Sem título';
     const preco = props.preco || 'Sem preço';
     const imagem = 'https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg';
+    
     return (
-        <View style={styles.container}>
-            <View style={styles.vImg}>
+        <ThemeProvider theme={theme}>
+        <Container>
+            <Vimg>
                 <Image
                     style={styles.img}
                     source={{uri:imagem}} />
-            </View> 
+            </Vimg> 
 
-            <View style={styles.vTxt}>
-                <Text style={styles.textFood}>{titulo}</Text>
-                <Text style={styles.moneyText}>R${preco}</Text>
+            <Vtxt>
+                <TextFood>{titulo}</TextFood>
+                <MoneyText>R${preco}</MoneyText>
                 
-            </View>
+            </Vtxt>
 
-            <View style={styles.carrinho}>
+            <Carrinho>
                 <TouchableOpacity onPress={handleDeletePress}>
                 <FontAwesome5 name={'trash-alt'} size={25} color='white' />
                 </TouchableOpacity>
-            </View>
-        </View>
+            </Carrinho>
+        </Container>
+        </ThemeProvider>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {

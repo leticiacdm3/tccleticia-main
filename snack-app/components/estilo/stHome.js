@@ -115,3 +115,7 @@ fontFamily: 'Montserrat-Regular';
 paddingRight: 100px;
 marginBottom: 20px;
 `;
+
+export const BotaoClicado = styled(Icon)    `
+color: ${({theme}) => theme.topColor};
+`;

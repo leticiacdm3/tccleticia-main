@@ -3,9 +3,14 @@ import { useNavigation } from 'expo-router';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useFonts } from 'expo-font';
 import Splash from './Splash';
+import { ThemeProvider } from 'styled-components'
+import themes from '../components/themes'
+import { useColorScheme } from 'react-native';
+import { Container, Voltar, Meio, TextInsta, TextInst } from '../components/estilo/stErmos.js'
 
 export default function Termos() {
-    
+    const deviceTheme = useColorScheme();
+    const theme = themes[deviceTheme] || theme.dark;
     const nav = useNavigation();
     const [fontsLoaded] = useFonts({
         'YsabeauSC-Medium': require('../assets/fonts/YsabeauSC-Medium.ttf'),
@@ -13,21 +18,25 @@ export default function Termos() {
 
     if (fontsLoaded) {
         return (
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.voltar}>
-                    <Icon name={'chevron-left'} size={30} color='#AE7CD4' onPress={() => nav.navigate('Register')} />
-                </TouchableOpacity>
-                <View style={styles.meio}>
-                    <Text style={styles.textInsta}>ME SIGA NO INSTAGRAM</Text>
+            <>
+            <ThemeProvider theme={theme}>
+            <Container>
+                <Voltar>
+                    <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('Register')} />
+                </Voltar>
+                <Meio>
+                    <TextInsta>ME SIGA NO INSTAGRAM</TextInsta>
                     <TouchableOpacity
                     onPress={()=> {
                         Linking.openURL('https://instagram.com/leticiademarcco')
                     }}
                     >
-                        <Text style={styles.textInst} >@leticiademarcco</Text>
+                        <TextInst>@leticiademarcco</TextInst>
                     </TouchableOpacity>
-                </View>
-            </View>
+                </Meio>
+            </Container>
+            </ThemeProvider>
+            </>
         );
     }
     else {
