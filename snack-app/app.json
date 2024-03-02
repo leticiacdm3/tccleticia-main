@@ -1,10 +1,10 @@
 {
   "expo": {
-  "splash": {
-    "image": "./assets/splash.png",
-    "resizeMode": "contain",
-    "backgroundColor": "#4C1C83"
-  },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4C1C83"
+    },
     "scheme": "acme",
     "userInterfaceStyle": "automatic",
     "web": {
@@ -25,6 +25,9 @@
       "eas": {
         "projectId": "efd62276-fb40-4407-8c33-c19f3b846aae"
       }
+    },
+    "android": {
+      "package": "com.letcdm.snackapp"
     }
   }
 }

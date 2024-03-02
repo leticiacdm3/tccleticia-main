@@ -84,48 +84,97 @@ export default function Home() {
 
                     <Meio>
                         <ScrollView>
-                            {SECTIONS.map(({ header, items }) => (
-                                <Section key={header}>
-                                    <SectionHeader>
-                                        <SectionHeaderText>{header}</SectionHeaderText>
-                                    </SectionHeader>
-
-                                    <View>
-                                        {items.map(({ label, id, type, icon }, index) => (
-                                            <RowWrapper style={[
-                                                index === 0 && { borderTopWidth: 0 },
-                                            ]}
-                                                key={id}
-                                            >
-                                                <TO
-                                                    onPress={() => {
-                                                        //handle press
-                                                    }}>
-                                                    <Row>
-                                                        <Icones
-                                                            name={icon}
-                                                            size={22}
-                                                            style={{ marginRight: 12 }}
-                                                        />
-
-                                                        <RowLabel>{label}</RowLabel>
-
-                                                        <RowSpacer />
-                                                        {type === 'select' && (
-                                                            <RowValue>{form[id]}</RowValue>
-                                                        )}
-                                                        {['select', 'link'].includes(type) && (
-                                                            <VoltIcon name="chevron-right" size={20} />
-
-                                                        )}
-                                                    </Row>
-                                                </TO>
-                                            </RowWrapper>
-                                        ))}
-                                    </View>
-
-                                </Section>
-                            ))}
+                            <Section>
+                                <SectionHeader>
+                                    <SectionHeaderText>PREFERÊNCIAS</SectionHeaderText>
+                                </SectionHeader>
+                                <RowWrapper>
+                                    
+                                    <TO onPress={()=>{
+                                        //handle press
+                                    }}>
+                                        <Row>
+                                        <Icones
+                                        name={'globe'}
+                                        size={22}
+                                        style={{marginRight:12}}
+                                        />
+                                        <RowLabel>Linguagem</RowLabel>
+                                        <RowSpacer/>
+                                            <RowValue>Português</RowValue>
+                                            <VoltIcon name="chevron-right" size={20} />
+                                        </Row>
+                                    </TO>
+                                    
+                                </RowWrapper>
+                                <RowWrapper>
+                                <TO onPress={()=>{
+                                        nav.navigate('ReplacePass2')
+                                    }}>
+                                        <Row>
+                                        <Icones
+                                        name={'lock'}
+                                        size={22}
+                                        style={{marginRight:12}}
+                                        />
+                                        <RowLabel>Alterar senha</RowLabel>
+                                        <RowSpacer/>
+                                            <VoltIcon name="chevron-right" size={20} />
+                                        </Row>
+                                    </TO>
+                                   
+                                </RowWrapper>
+                                <RowWrapper>
+                                <TO onPress={()=>{
+                                        //handle press
+                                    }}>
+                                        <Row>
+                                        <Icones
+                                        name={'envelope'}
+                                        size={22}
+                                        style={{marginRight:12}}
+                                        />
+                                        <RowLabel>Alterar e-mail</RowLabel>
+                                        <RowSpacer/>
+                                            <VoltIcon name="chevron-right" size={20} />
+                                        </Row>
+                                    </TO>
+                                   
+                                </RowWrapper>
+                                <RowWrapper>
+                                <TO onPress={()=>{
+                                        //handle press
+                                    }}>
+                                        <Row>
+                                        <Icones
+                                        name={'flag'}
+                                        size={22}
+                                        style={{marginRight:12}}
+                                        />
+                                        <RowLabel>Reporte um problema</RowLabel>
+                                        <RowSpacer/>
+                                            <VoltIcon name="chevron-right" size={20} />
+                                        </Row>
+                                    </TO>
+                                    
+                                </RowWrapper>
+                                <RowWrapper>
+                                <TO onPress={()=>{
+                                        nav.navigate('Termos2')
+                                    }}>
+                                        <Row>
+                                        <Icones
+                                        name={'file-o'}
+                                        size={22}
+                                        style={{marginRight:12}}
+                                        />
+                                        <RowLabel>Termos de uso</RowLabel>
+                                        <RowSpacer/>
+                                            <VoltIcon name="chevron-right" size={20} />
+                                        </Row>
+                                    </TO>
+                                </RowWrapper>
+                            </Section>
 
                             <Pjc onPress={trySignOut}>
                                 <PjcText>SAIR</PjcText>

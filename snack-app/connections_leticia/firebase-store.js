@@ -9,13 +9,14 @@ import { getDocs } from "firebase/firestore";
 export const db = getFirestore(app);
 const storage = getStorage(app);
 
-const addUserFirestore = async ( name, phone, estado, perfil) => {
+const addUserFirestore = async ( userCredential, name, phone, estado, profile) => {
     const uid = auth.currentUser.uid;
     const data = {
         name: name,
         phone: phone,
         state: estado,
-        profile: perfil
+        profile: profile,
+        uid: uid,
 
     }
     console.log(data)

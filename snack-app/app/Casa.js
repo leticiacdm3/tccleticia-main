@@ -11,7 +11,7 @@ import { useColorScheme } from 'react-native';
 import { getPerfilFromUid } from '../connections_leticia/firebase-store';
 import { auth } from '../connections_leticia/firebase-auth';
 import Swiper from 'react-native-swiper';
-import { Splash } from './Splash';
+import Splash from './Splash';
 
 export default function Home(props) {
     const nav = useNavigation();
@@ -238,8 +238,7 @@ export default function Home(props) {
             </ThemeProvider>
         );
     } else {
-        return
-        <Splash />
+        return <Splash/>
     }
 
 
