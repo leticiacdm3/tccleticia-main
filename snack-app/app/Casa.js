@@ -101,12 +101,7 @@ export default function Home(props) {
                                     <Tnome>SANDUÍCHE OLÍMPICO</Tnome>
                                     <Tnome2>Ingredientes</Tnome2>
                                     <Vimg>
-                                        <Image source={require('../assets/Imagens/queijo.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/presunto.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/tomate.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/alface.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/ovo.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/maionese.png')} style={{ width: 40, height: 40 }} />
+                                        <Image source={require('../assets/Imagens/sand.png')} style={{ width: 250, height: 40 }} />
                                     </Vimg>
                                     <Tvalnutri>Valores Nutricionais</Tvalnutri>
                                     <Tkcal>
@@ -125,12 +120,7 @@ export default function Home(props) {
                                     <Tnome>BOLO DE CHOCOLATE</Tnome>
                                     <Tnome2>Ingredientes</Tnome2>
                                     <Vimg>
-                                        <Image source={require('../assets/Imagens/farinha.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/ovob.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/leite.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/óleo.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/chocolate.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/açúcar.png')} style={{ width: 40, height: 40 }} />
+                                        <Image source={require('../assets/Imagens/bol.png')} style={{ width: 250, height: 40 }} />
                                     </Vimg>
                                     <Tvalnutri>Valores Nutricionais</Tvalnutri>
                                     <Tkcal>
@@ -149,12 +139,7 @@ export default function Home(props) {
                                     <Tnome>SALADA DE FRUTAS</Tnome>
                                     <Tnome2>Ingredientes</Tnome2>
                                     <Vimg>
-                                        <Image source={require('../assets/Imagens/melancia.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/morango.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/banana.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/maçã.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/mamão.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/mel.png')} style={{ width: 40, height: 40 }} />
+                                        <Image source={require('../assets/Imagens/frutas.png')} style={{ width: 250, height: 40 }} />
                                     </Vimg>
                                     <Tvalnutri>Valores Nutricionais</Tvalnutri>
                                     <Tkcal>
@@ -173,12 +158,7 @@ export default function Home(props) {
                                     <Tnome>PASTEL DE CARNE</Tnome>
                                     <Tnome2>Ingredientes</Tnome2>
                                     <Vimg>
-                                        <Image source={require('../assets/Imagens/massa.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/carne.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/cebola.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/tomate.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/ovo.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/óleo.png')} style={{ width: 40, height: 40 }} />
+                                        <Image source={require('../assets/Imagens/past.png')} style={{ width: 250, height: 40 }} />
                                     </Vimg>
                                     <Tvalnutri>Valores Nutricionais</Tvalnutri>
                                     <Tkcal>
@@ -197,12 +177,7 @@ export default function Home(props) {
                                     <Tnome>PIZZA DE CALABRESA</Tnome>
                                     <Tnome2>Ingredientes</Tnome2>
                                     <Vimg>
-                                        <Image source={require('../assets/Imagens/massa.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/molho.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/queijo.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/calabresa.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/cebola.png')} style={{ width: 40, height: 40 }} />
-                                        <Image source={require('../assets/Imagens/orégano.png')} style={{ width: 40, height: 40 }} />
+                                        <Image source={require('../assets/Imagens/pizz.png')} style={{ width: 250, height: 40 }} />
                                     </Vimg>
                                     <Tvalnutri>Valores Nutricionais</Tvalnutri>
                                     <Tkcal>
