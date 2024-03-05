@@ -20,6 +20,7 @@ export default (props) => {
                         paddingTop={9}
                         paddingLeft={4}
                         color='white'
+                        autoCapitalize='none'
                     />
                 </View>
             </View>

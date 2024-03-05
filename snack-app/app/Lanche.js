@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, RefreshControl } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from 'expo-router';
 import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome} from '@expo/vector-icons';
@@ -11,6 +11,14 @@ export default function Pagamento() {
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
     });
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        setTimeout(() => {
+        setRefreshing(false);
+        }, 2000);
+    }, []);
 
     if (fontsLoaded) {
         return (
@@ -26,7 +34,11 @@ export default function Pagamento() {
                 </View>
 
                 <View style={styles.meio}>
-                    <ScrollView >
+                    <ScrollView 
+                        refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                        }>
+
                         <AddLanche />
                     </ScrollView>
                 </View>

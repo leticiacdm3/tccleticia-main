@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView } from 'react-native';
+import {TouchableOpacity as TO,  } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation, useRouter } from 'expo-router';
-import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import { useEffect, useState } from 'react';
 import Lanchinhos from '../components/Lanchinhos';
-import { getLanches, storage, getImgLanche } from '../connections_leticia/firebase-store';
+import { getLanches} from '../connections_leticia/firebase-store';
 import { AddLanche, AddLancheText, BotaoClicado, BottomIcon, Container, Inferior, Meinho, Meio, Superior, User, Userr, Voltar } from '../components/estilo/stCardapio';
 import themes from '../components/themes';
 import { useColorScheme } from 'react-native';
 import { ThemeProvider } from 'styled-components';
+import Splash from './Splash';
+import { RefreshControl } from 'react-native';
+import React from 'react';
 
 export default function Cardapio() {
     const deviceTheme = useColorScheme();
@@ -22,7 +25,7 @@ export default function Cardapio() {
     });
 
     const [lanches, setLanches] = useState([])
-    
+
     //Iniciar a lista de lanches
     useEffect(() => {
         initial();
@@ -32,56 +35,71 @@ export default function Cardapio() {
         const l = await getLanches()
         setLanches(l);
     }
+    const [refreshing, setRefreshing] = React.useState(false);
 
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        setTimeout(() => {
+            setRefreshing(false);
+        }, 2000);
+    }, []);
 
-    return (
-        <ThemeProvider theme={theme}>
-            <Container>
-                <Superior>
-                    <Voltar>
-                        <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('Casa')} />
-                    </Voltar>
+    if (fontsLoaded) {
+        return (
+            <ThemeProvider theme={theme}>
+                <Container>
+                    <Superior>
+                        <Voltar>
+                            <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('Casa')} />
+                        </Voltar>
 
-                    <User>
-                        <AntDesign name={'shoppingcart'} size={30} color='white' />
-                    </User>
-                    <Userr>
-                        <Icon name={'user'} size={25} color='white' onPress={() => nav.navigate('Perfil')} />
-                    </Userr>
+                        <User>
+                            <AntDesign name={'shoppingcart'} size={30} color='white' />
+                        </User>
+                        <Userr>
+                            <Icon name={'user'} size={25} color='white' onPress={() => nav.navigate('Perfil')} />
+                        </Userr>
 
-                </Superior>
+                    </Superior>
 
-                <Meio>
-                    <Meinho>
+                    <Meio>
+                        <Meinho
+                            refreshControl={
+                                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                            }>
 
-                        {
-                            lanches && lanches.map((l, i) => {
-                                return (
-                                    <Lanchinhos key={i} titulo={l.productName} preco={l.value} imagem={l.image} />
-                                )
-                            })
-                        }
-                        <AddLanche onPress={() => nav.navigate('AddLanche')}>
-                            <AntDesign name={'pluscircleo'} size={30} color='white' />
-                            <AddLancheText> ADICIONAR LANCHES </AddLancheText>
-                        </AddLanche>
-                    </Meinho>
-                </Meio>
+                            {
+                                lanches && lanches.map((l, i) => {
+                                    return (
+                                        <Lanchinhos key={i} titulo={l.productName} preco={l.value} imagem={l.image} />
+                                    )
+                                })
+                            }
+                            <AddLanche onPress={() => nav.navigate('AddLanche')}>
+                                <AntDesign name={'pluscircleo'} size={30} color='white' />
+                                <AddLancheText> ADICIONAR LANCHES </AddLancheText>
+                            </AddLanche>
+                        </Meinho>
+                    </Meio>
 
-                <Inferior>
-                    <TO onPress={() => nav.navigate('Casa')}>
-                        <BottomIcon name={'home'} size={35} />
-                    </TO>
-                    <TO  >
-                        <BotaoClicado name={'food'} size={35} />
-                    </TO>
-                    <TO onPress={() => nav.navigate('ToDoList')}>
-                        <BottomIcon name={'cash'} size={35} />
-                    </TO>
+                    <Inferior>
+                        <TO onPress={() => nav.navigate('Casa')}>
+                            <BottomIcon name={'home'} size={35} />
+                        </TO>
+                        <TO  >
+                            <BotaoClicado name={'food'} size={35} />
+                        </TO>
+                        <TO onPress={() => nav.navigate('ToDoList')}>
+                            <BottomIcon name={'cash'} size={35} />
+                        </TO>
 
-                </Inferior>
+                    </Inferior>
 
-            </Container>
-        </ThemeProvider>
-    );
+                </Container>
+            </ThemeProvider>
+        );
+    } else {
+        return <Splash />
+    }
 }
+

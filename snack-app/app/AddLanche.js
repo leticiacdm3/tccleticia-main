@@ -63,7 +63,7 @@ export default function AddLanche() {
                     <Input text={nomeProduto} onChangeText={(text) => setNomeProduto(text)} />
 
                     <Txt>Valor</Txt>
-                    <Input text={valor} onChangeText={(text) => setValor(text)} keyboardType="numeric" />
+                    <Input text={valor} onChangeText={(text) => setValor(text)} />
 
                     <Botao onPress={handleImagePicker}>
                         <Icone2 name="plus-circle-outline" size={20} marginRight={10}/>
