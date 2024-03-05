@@ -20,6 +20,8 @@ export default function Entrar() {
   function replacePass() {
     nav.navigate('ReplacePass')
   }
+
+  //Função para tentar logar
   const tryLogin = async () => {
     console.log(email, pass)
     const userCredential = await emailLogin(email, pass);
@@ -39,6 +41,7 @@ export default function Entrar() {
   });
   const imgSource = require('../assets/logoescuro.png');
 
+  //Se estiver logado vai direto pra tela Home
   useEffect(() => {
     if (auth.currentUser) {
       console.log(auth.currentUser)

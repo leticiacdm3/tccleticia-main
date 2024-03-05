@@ -1,9 +1,9 @@
 import { StyleSheet, View, Text } from 'react-native';
 export default (props) => {
 
-    return(
+    return (
         <View style={styles.container}>
-                <Text style={styles.texto}>{props.namee}</Text>
+            <Text style={styles.texto}>{props.namee}</Text>
         </View>
     );
 }
@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
         alignItems: 'left',
         width: '70%',
         height: '11%',
-        paddingLeft:4,
-        paddingTop:7,
-        flex:2,
-        
+        paddingLeft: 4,
+        paddingTop: 7,
+        flex: 2,
+
 
     },
-    texto:{
+    texto: {
         paddingBottom: 3,
         color: 'white'
     }

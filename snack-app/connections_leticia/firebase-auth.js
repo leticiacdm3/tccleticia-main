@@ -1,15 +1,14 @@
 
 import { app } from "./firebase-app"
-//import { getAnalytics } from "firebase/analytics";
-import { initializeAuth, getReactNativePersistence, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
+import { initializeAuth, getReactNativePersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
-//import { addUserFirestore } from "./firebase-store";
 
+//Inicializa o módulo de autenticação
 const auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage)
 });
 
-
+//Função para logar com email e senha
 const emailLogin = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
         .catch(error => {
@@ -19,7 +18,7 @@ const emailLogin = async (email, password) => {
     return userCredential
 }
 
-
+//Função para criar usuário com email e senha
 const createUser = async (email, pass) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, pass)
         .catch((error) => {
@@ -28,7 +27,7 @@ const createUser = async (email, pass) => {
     return userCredential
 
 }
-
+//Função para deslogar
 const signOutFirebase = async () => {
     signOut(auth).then(() => {
         console.log("Deslogado");
@@ -37,7 +36,6 @@ const signOutFirebase = async () => {
     });
 }
 
-//EXPORTA O OBJETI DO APP (DESNECESSARIAMENTE, NA VERDADE), O DE AUTENTICACAO E AS TRES FUNCOES CRIADAS
 export {
     app,
     auth,

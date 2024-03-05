@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { SafeAreaView, Alert, Image, View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView } from "react-native";
-import { useNavigation, useRouter } from 'expo-router';
-import { AntDesign } from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import React, { useState} from 'react';
+import {Image, View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import { useNavigation} from 'expo-router';
 import * as imagePicker from 'expo-image-picker';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { addDoc, collection, onSnapshot } from 'firebase/firestore';
-import { storage, db, getStorage } from "../connections_leticia/firebase-store";
+import { ref} from 'firebase/storage';
+import { storage} from "../connections_leticia/firebase-store";
 import { addLancheFirestore } from '../connections_leticia/firebase-store';
 import { ThemeProvider } from 'styled-components';
 import themes from '../components/themes';
@@ -15,19 +12,19 @@ import { Botao, Container, Icone, Icone2, Input, Meio, Superior, Txt, TxtAddImg 
 
 export default function AddLanche() {
     const [image, setImage] = useState('https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg')
-    const [url, setUrl] = useState("");
     const [nomeProduto, setNomeProduto] = useState('');
     const [valor, setValor] = useState('');
-    const [descrição, setDescrição] = useState('');
     const [imagem, setImagem] = useState('');
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;
 
+    //Função para criar um produto
     const tryCreateProduct = async () => {
         await addLancheFirestore(nomeProduto, valor, descrição, imagem);
         nav.navigate('Cardapio')
     } 
 
+    //Função para pegar a imagem da galeria
     const handleImagePicker = async () => {
         const result = await imagePicker.launchImageLibraryAsync({
             mediaTypes: imagePicker.MediaTypeOptions.Images,
@@ -42,6 +39,8 @@ export default function AddLanche() {
             await uploadImage(result.assets[0].uri, "image")
         }
     };
+    
+    //Função para fazer o upload da imagem
     async function uploadImage(uri) {
         const response = await fetch(uri);
         const blob = await response.blob();
@@ -49,18 +48,6 @@ export default function AddLanche() {
         setImagem(storageRef.fullPath)
     }
 
-    async function saveRecord(fileType, url, createdAt) {
-        try {
-            const docRef = await addDoc(collection(db, "files"), {
-                fileType,
-                url,
-                createdAt,
-            });
-            console.log("document saved correctly", docRef.id);
-        } catch (e) {
-            console.log(e);
-        }
-    }
     const nav = useNavigation();
     return (
         <ThemeProvider theme={theme}>
@@ -95,75 +82,6 @@ export default function AddLanche() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'WHITE',
-    },
-
-    input: {
-        borderWidth: 1,
-        borderRadius: 15,
-        height: 40,
-        width: 300,
-        marginBottom: 20,
-        paddingLeft: 10,
-        backgroundColor: '#fff',
-        alignSelf: 'center'
-    },
-    txt: {
-        color: '#fff',
-        fontSize: 20,
-        paddingLeft: 8,
-        marginBottom: 5,
-        marginLeft: 55
-    },
-    meio: {
-        flex: 2,
-        width: '100%',
-        height: '100%',
-        paddingTop: 30
-    },
-
-    botImg: {
-        width: '70%',
-        backgroundColor: 'white',
-        height: 80,
-        marginTop: 20,
-        alignSelf: 'center',
-        borderRadius: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row'
-    },
-    superior: {
-        flex: 0.1,
-        paddingBottom: 30,
-        marginRight: 50,
-        alignSelf: 'left',
-        width: '100%',
-        height: '100%',
-        paddingLeft: 10,
-        paddingTop: 15,
-    },
-    botao: {
-        alignSelf: 'center',
-        marginTop: 30,
-        marginBottom: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#DBDBDB',
-        width: 200,
-        height: 30,
-        flexDirection: 'row',
-        borderRadius: 10
-    },
-    avatar: {
-        width: 200,
-        height: 200,
-
-    },
     imagem: {
         alignItems: 'center',
         justifyContent: 'center',

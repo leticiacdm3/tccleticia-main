@@ -34,12 +34,13 @@ export default function Register() {
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;
 
+    //Função para tentar criar um usuário
     const tryCreateUser = async () => {
-       if (pass != passC) {
-        alert('As senhas não coincidem');
-        return;
-       }
-       const userCredential = await createUser(email, pass);
+        if (pass != passC) {
+            alert('As senhas não coincidem');
+            return;
+        }
+        const userCredential = await createUser(email, pass);
         if (userCredential) {
             addUserFirestore(userCredential.user.uid, name, cpf, birthDate, phone, email, estado, perfil);
             nav.navigate('Casa')
@@ -47,7 +48,7 @@ export default function Register() {
             alert('Erro ao criar usuário');
         }
     }
-    
+
 
     const [estado, setEstado] = useState("");
     const data = [
@@ -87,93 +88,93 @@ export default function Register() {
     if (fontsLoaded) {
         return (
             <>
-            <ThemeProvider theme={theme}>
-                <Container>
-                    <ScrollView>
-                        <Superior>
-                            <TO style={styles.voltar}>
-                                <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('index')} />
-                            </TO>
-                            <TextCadastro> CADASTRO </TextCadastro>
-                        </Superior>
-                        <Meio>
+                <ThemeProvider theme={theme}>
+                    <Container>
+                        <ScrollView>
+                            <Superior>
+                                <TO style={styles.voltar}>
+                                    <Icon name={'chevron-left'} size={30} color='white' onPress={() => nav.navigate('index')} />
+                                </TO>
+                                <TextCadastro> CADASTRO </TextCadastro>
+                            </Superior>
+                            <Meio>
 
-                            <Cadastro label='Digite seu nome:' text={name} setText={(text) => setName(text)} />
-                            <Cadastro label='Digite seu CPF:' text={cpf} setText={(text) => setCpf(text)} />
-                            <Cadastro label='Digite sua data de nascimento:' text={birthDate} setText={(text) => setBirthDate(text)} />
-                            <Cadastro value={email} setText={setEmail} label='Digite seu e-mail:' />
-                            <Cadastro label='Digite seu celular:' text={phone} setText={(text) => setPhone(text)} />
-                            <SenhaCadastro value={pass} setSenha={setPass} labelpass='Digite sua senha:' />
-                            <SenhaCadastro value={passC} setSenha={setPassC} labelpass='Digite sua senha novamente:' />
-                            <SelectList
-                                setSelected={(val) => setEstado(val)}
-                                data={data}
-                                save="key"
-                                placeholder='Selecione seu estado:'
-                                fontFamily='Montserrat-Regular'
-                                dropdownStyles={{
-                                    width: 285,
-                                    backgroundColor: 'white',
-                                    borderColor: 'white',
-                                    marginBottom: 20
-                                }}
-                                boxStyles={{
-                                    width: 285,
-                                    borderColor: 'white',
-                                    marginBottom: 20
-                                }}
-                                inputStyles={
-                                    { color: 'white' }
-                                }
-                            />
-                            <SelectList
-                                setSelected={(val) => setPerfil(val)}
-                                data={dados}
-                                save="value"
-                                placeholder='Selecione seu perfil:'
-                                fontFamily='Montserrat-Regular'
-                                dropdownStyles={{
-                                    width: 285,
-                                    backgroundColor: 'white',
-                                    borderColor: 'white',
-                                }}
-                                boxStyles={{
-                                    width: 285,
-                                    borderColor: 'white',
-                                }}
-                                inputStyles={
-                                    { color: 'white' }
-                                }
-                            />
-                        </Meio>
-                        <Rodape>
-                            <Vtermos>
-                                <CheckBox
-                                    style={styles.checkbox}
-                                    disabled={false}
-                                    value={isChecked}
-                                    onValueChange={(setChecked)}
+                                <Cadastro label='Digite seu nome:' text={name} setText={(text) => setName(text)} />
+                                <Cadastro label='Digite seu CPF:' text={cpf} setText={(text) => setCpf(text)} />
+                                <Cadastro label='Digite sua data de nascimento:' text={birthDate} setText={(text) => setBirthDate(text)} />
+                                <Cadastro value={email} setText={setEmail} label='Digite seu e-mail:' />
+                                <Cadastro label='Digite seu celular:' text={phone} setText={(text) => setPhone(text)} />
+                                <SenhaCadastro value={pass} setSenha={setPass} labelpass='Digite sua senha:' />
+                                <SenhaCadastro value={passC} setSenha={setPassC} labelpass='Digite sua senha novamente:' />
+                                <SelectList
+                                    setSelected={(val) => setEstado(val)}
+                                    data={data}
+                                    save="key"
+                                    placeholder='Selecione seu estado:'
+                                    fontFamily='Montserrat-Regular'
+                                    dropdownStyles={{
+                                        width: 285,
+                                        backgroundColor: 'white',
+                                        borderColor: 'white',
+                                        marginBottom: 20
+                                    }}
+                                    boxStyles={{
+                                        width: 285,
+                                        borderColor: 'white',
+                                        marginBottom: 20
+                                    }}
+                                    inputStyles={
+                                        { color: 'white' }
+                                    }
                                 />
-                                <Tdu>Li e concordo com os </Tdu>
-                                <TO onPress={() => nav.navigate('Termos')}><Termo>Termos de Uso</Termo></TO>
-                            </Vtermos>
+                                <SelectList
+                                    setSelected={(val) => setPerfil(val)}
+                                    data={dados}
+                                    save="value"
+                                    placeholder='Selecione seu perfil:'
+                                    fontFamily='Montserrat-Regular'
+                                    dropdownStyles={{
+                                        width: 285,
+                                        backgroundColor: 'white',
+                                        borderColor: 'white',
+                                    }}
+                                    boxStyles={{
+                                        width: 285,
+                                        borderColor: 'white',
+                                    }}
+                                    inputStyles={
+                                        { color: 'white' }
+                                    }
+                                />
+                            </Meio>
+                            <Rodape>
+                                <Vtermos>
+                                    <CheckBox
+                                        style={styles.checkbox}
+                                        disabled={false}
+                                        value={isChecked}
+                                        onValueChange={(setChecked)}
+                                    />
+                                    <Tdu>Li e concordo com os </Tdu>
+                                    <TO onPress={() => nav.navigate('Termos')}><Termo>Termos de Uso</Termo></TO>
+                                </Vtermos>
 
-                            <RegisterButton
-                                onPress={() => {tryCreateUser();}}>
-                                <RegisterButtonText>
-                                    CADASTRAR
-                                </RegisterButtonText>
-                            </RegisterButton>
+                                <RegisterButton
+                                    onPress={() => { tryCreateUser(); }}>
+                                    <RegisterButtonText>
+                                        CADASTRAR
+                                    </RegisterButtonText>
+                                </RegisterButton>
 
-                        </Rodape>
-                        <NaoPossui>
-                            <NotYet> Já possui conta? </NotYet>
-                            <TO onPress={() => nav.navigate('entrar')}>
-                                <NaoPossuiCadastre>ENTRE</NaoPossuiCadastre>
-                            </TO>
-                        </NaoPossui>
-                    </ScrollView>
-                </Container>
+                            </Rodape>
+                            <NaoPossui>
+                                <NotYet> Já possui conta? </NotYet>
+                                <TO onPress={() => nav.navigate('entrar')}>
+                                    <NaoPossuiCadastre>ENTRE</NaoPossuiCadastre>
+                                </TO>
+                            </NaoPossui>
+                        </ScrollView>
+                    </Container>
                 </ThemeProvider>
             </>
         );

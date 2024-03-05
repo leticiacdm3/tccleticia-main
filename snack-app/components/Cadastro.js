@@ -6,7 +6,7 @@ export default (props) => {
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf')
     });
-    
+
     if (fontsLoaded) {
         return (
             <View style={styles.container}>

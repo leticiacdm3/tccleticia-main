@@ -1,6 +1,6 @@
 //ARQUIVO PARA ACESSAR O BANCO DE DADOS DO FIREBASE
 
-import { getFirestore, collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, setDoc, doc, getDoc, deleteDoc } from "firebase/firestore";
 import { auth } from "./firebase-auth";
 import { app } from "./firebase-app"
 import { getStorage, ref } from "firebase/storage";
@@ -9,6 +9,7 @@ import { getDocs } from "firebase/firestore";
 export const db = getFirestore(app);
 const storage = getStorage(app);
 
+//Adiciona um usuário no firestore
 const addUserFirestore = async ( userCredential, name, phone, estado, profile) => {
     const uid = auth.currentUser.uid;
     const data = {
@@ -24,6 +25,7 @@ const addUserFirestore = async ( userCredential, name, phone, estado, profile) =
 
 }
 
+//Adiciona um lanche no firestore
 const addLancheFirestore = async (nomeProduto, valor, descrição, imagem) => {
     const data = {
         productName: nomeProduto,
@@ -35,6 +37,7 @@ const addLancheFirestore = async (nomeProduto, valor, descrição, imagem) => {
     return await addDoc(collection(db, "produtos"), data);
 }
 
+//Pega os dados do usuário a partir do uid
 const getPerfilFromUid = async (uid) => {
     const docRef = doc(db, "usuarios", uid);
     const docSnap = await getDoc(docRef);
@@ -45,6 +48,7 @@ const getPerfilFromUid = async (uid) => {
     }
 }
 
+//Pega as imagens do firestore
 const getImgLanche = async (uid) => {
     let lanches = []
     const querySnapshot = await getDocs(collection(db, "files"));
@@ -54,6 +58,7 @@ const getImgLanche = async (uid) => {
     return lanches
 }
 
+//Pega os lanches do firestore
 const getLanches = async (uid) => {
     let lanches = []
     const querySnapshot = await getDocs(collection(db, "produtos"));
@@ -64,7 +69,5 @@ const getLanches = async (uid) => {
 }
 
 
-//EXPORTA AS FUNCOES
 export { addUserFirestore, getPerfilFromUid, getStorage, getFirestore, storage, addLancheFirestore, getImgLanche, getLanches }
 
-//CRIAR ALUNO, LISTA DE ALUNOS TOCA E VE QNT DEVE AUMENTA OK E ATUALIZA NO BANCO DE DADOS DEIXAR CARDAPIO PRA DEPOIS

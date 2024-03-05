@@ -90,7 +90,7 @@ export const BotaoSave = styled.TouchableOpacity`
 `;
 
 export const Icone = styled(Icon)`
-    color: ${({theme}) => theme.topColor};
+    color: ${({theme}) => theme.color}
 `;
 export const Icone2 = styled(Icon)`
     color: ${({theme}) => theme.colorIcone2};

@@ -16,24 +16,12 @@ import Splash from './Splash';
 export default function Home(props) {
     const nav = useNavigation();
 
-    const [perfil, setPerfil] = useState("");
-    // useEffect(() => {
-    //     fetchPerfil(); 
-    // }, []);
-    // const fetchPerfil = async () => {
-    // const uid = auth.currentUser.uid;
-    // const perfil = await getPerfilFromUid(uid);
-    //   if (perfil) {
-    //     setPerfil(perfil);
-    //   }
-    //   console.log(perfil);
-    // }
-  
+    //Função para pegar o perfil do usuário
     useEffect(() => {
-      if (auth && auth.currentUser) {
-        console.log(auth.currentUser)
-        nav.navigate('Casa')
-      } 
+        if (auth && auth.currentUser) {
+            console.log(auth.currentUser)
+            nav.navigate('Casa')
+        }
     }, [])
     useEffect(() => {
         getPerfilFromUid(auth.currentUser.uid)
@@ -45,6 +33,7 @@ export default function Home(props) {
             })
     }, [])
 
+    //Função para pegar o tema do dispositivo
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;
 
@@ -52,30 +41,8 @@ export default function Home(props) {
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
     });
-    const [imgLoaded] = useState({
-        'queijo': require('../assets/Imagens/queijo.png'),
-        'presunto': require('../assets/Imagens/presunto.png'),
-        'tomate': require('../assets/Imagens/tomate.png'),
-        'alface': require('../assets/Imagens/alface.png'),
-        'ovo': require('../assets/Imagens/ovo.png'),
-        'maionese': require('../assets/Imagens/maionese.png'),
-        'farinha': require('../assets/Imagens/farinha.png'),
-        'ovob': require('../assets/Imagens/ovob.png'),
-        'leite': require('../assets/Imagens/leite.png'),
-        'óleo': require('../assets/Imagens/óleo.png'),
-        'chocolate': require('../assets/Imagens/chocolate.png'),
-        'açúcar': require('../assets/Imagens/açúcar.png'),
-        'melancia': require('../assets/Imagens/melancia.png'),
-        'morango': require('../assets/Imagens/morango.png'),
-        'banana': require('../assets/Imagens/banana.png'),
-        'maçã': require('../assets/Imagens/maçã.png'),
-        'mamão': require('../assets/Imagens/mamão.png'),
-        'mel': require('../assets/Imagens/mel.png'),
-        'sanduiche': require('../assets/Imagens/sanduiche.jpg'),
-        'bolo': require('../assets/Imagens/bolo.png'),
-        'salada': require('../assets/Imagens/salada.jpg'),
-    })
-    if (fontsLoaded && imgLoaded) {
+
+    if (fontsLoaded) {
         return (
             <ThemeProvider theme={theme}>
                 <Container>
@@ -213,7 +180,7 @@ export default function Home(props) {
             </ThemeProvider>
         );
     } else {
-        return <Splash/>
+        return <Splash />
     }
 
 

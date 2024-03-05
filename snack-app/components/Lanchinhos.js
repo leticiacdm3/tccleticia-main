@@ -1,6 +1,5 @@
 import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from 'react-native';
-import {FontAwesome5} from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { FontAwesome5 } from '@expo/vector-icons';
 import themes from './themes';
 import { useColorScheme } from 'react-native';
 import { ThemeProvider } from 'styled-components';
@@ -10,47 +9,48 @@ export default (props) => {
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;
 
-    function handleDeletePress(){ 
+    //Função para deletar um item do carrinho
+    function handleDeletePress() {
         Alert.alert(
-            "Atenção",
-            "Você tem certeza que deseja excluir este item?",
+            "Opa opa opa!",
+            "Você faria isso comigo?",
             [
                 {
-                text: "Não",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
+                    text: "Não",
+                    onPress: () => Alert.alert("Ufa!"),
+                    style: "cancel"
                 },
-                { text: "Sim", onPress: () => console.log(`deleted`) }
+                { text: "Sim", onPress: () => Alert.alert("NÃOOOOOOO") }
             ],
             { cancelable: false }
-            );
-        }
+        );
+    }
 
     const titulo = props.titulo || 'Sem título';
     const preco = props.preco || 'Sem preço';
     const imagem = 'https://www.biotecdermo.com.br/wp-content/uploads/2016/10/sem-imagem-10.jpg';
-    
+
     return (
         <ThemeProvider theme={theme}>
-        <Container>
-            <Vimg>
-                <Image
-                    style={styles.img}
-                    source={{uri:imagem}} />
-            </Vimg> 
+            <Container>
+                <Vimg>
+                    <Image
+                        style={styles.img}
+                        source={{ uri: imagem }} />
+                </Vimg>
 
-            <Vtxt>
-                <TextFood>{titulo}</TextFood>
-                <MoneyText>R${preco}</MoneyText>
-                
-            </Vtxt>
+                <Vtxt>
+                    <TextFood>{titulo}</TextFood>
+                    <MoneyText>R${preco}</MoneyText>
 
-            <Carrinho>
-                <TouchableOpacity onPress={handleDeletePress}>
-                <FontAwesome5 name={'trash-alt'} size={25} color='white' />
-                </TouchableOpacity>
-            </Carrinho>
-        </Container>
+                </Vtxt>
+
+                <Carrinho>
+                    <TouchableOpacity onPress={handleDeletePress}>
+                        <FontAwesome5 name={'trash-alt'} size={25} color='white' />
+                    </TouchableOpacity>
+                </Carrinho>
+            </Container>
         </ThemeProvider>
     );
 }
@@ -95,10 +95,10 @@ const styles = StyleSheet.create({
         marginTop: 16,
         alignSelf: 'left'
     },
-    carrinho:{
+    carrinho: {
         alignSelf: 'center',
-        
-        
+
+
     }
 
 })

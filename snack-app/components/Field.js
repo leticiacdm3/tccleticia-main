@@ -1,12 +1,10 @@
-import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useFonts } from 'expo-font';
 export default (props) => {
     const [fontsLoaded] = useFonts({
         'LisuBosa-ExtraLight': require('../assets/fonts/LisuBosa-ExtraLight.ttf'),
     });
-
-
 
     return (
         <View style={styles.container}>

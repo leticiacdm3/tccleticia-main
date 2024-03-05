@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { useNavigation } from 'expo-router';
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -14,6 +14,7 @@ export default function ReplacePass2() {
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;
 
+    //Função para enviar o email de redefinição de senha
     const replacePass = async () => {
         if (userMail !== '') {
             sendPasswordResetEmail(auth, userMail)
@@ -63,44 +64,3 @@ export default function ReplacePass2() {
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white'
-    },
-    formTitle: {
-        fontSize: 24,
-        color: 'black',
-        marginBottom: 20
-    },
-    formInput: {
-        width: '80%',
-        height: 40,
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 10,
-        padding: 10,
-        marginBottom: 20
-    },
-    sendButton: {
-        width: '80%',
-        height: 40,
-        backgroundColor: '#007F1E',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10
-    },
-    sendButtonText: {
-        fontSize: 16,
-        color: '#fff'
-    },
-    subContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '80%',
-        marginTop: 20
-    }
-
-})

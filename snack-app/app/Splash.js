@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 
 export default function Splash() {
   return (
     <View style={styles.container}>
       <View style={styles.superior}>
       </View>
-      <Image style={styles.imagem} source={require('../assets/logoescuro.png')}/>
+      <Image style={styles.imagem} source={require('../assets/logoescuro.png')} />
       <View style={styles.inferior}>
-        <Image style= {styles.demarco} source={require('../assets/demarcoEscuro.png')}/>
+        <Image style={styles.demarco} source={require('../assets/demarcoEscuro.png')} />
       </View>
     </View>
   );
@@ -16,7 +16,7 @@ export default function Splash() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#00BF63',
+    backgroundColor: '#4C1C83',
     alignItems: 'center',
     justifyContent: 'center',
   },

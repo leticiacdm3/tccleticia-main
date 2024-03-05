@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation, useRouter } from 'expo-router';
 import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -18,25 +18,19 @@ export default function Clientes() {
         'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
         'LisuBosa-Regular': require('../assets/fonts/LisuBosa-Regular.ttf'),
     });
-    const Data = [
-        {
-            id: '01',
-            title: 'Comprar pão',
-        },
-        {
-            id: '02',
-            title: 'Comprar leite',
-        },
-    ];
     const [todo, setTodo] = useState("");
     const [todoList, setTodoList] = useState([]);
+
+    //Função para adicionar tarefas
     const handleAddTodo = () => {
         setTodoList([...todoList, { id: Date.now().toString(), title: todo }])
         setTodo("")
     }
     const handleDeleteTodo = (id) => {
-        const updatedTodoList = todoList.filter((todo) => todo.id !== id)
-        setTodoList(updatedTodoList);
+        Alert.alert('Deletar tarefa', 'Tem certeza que deseja deletar esta tarefa importantíssima?', [
+            { text: 'Cancelar', style: 'cancel' },
+            { text: 'Deletar', onPress: () => Alert.alert('Não foi dessa vez.') }
+        ]);
     }
     const deviceTheme = useColorScheme();
     const theme = themes[deviceTheme] || theme.dark;

@@ -1,10 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity as TO, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { useNavigation} from 'expo-router';
-import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from 'expo-router';
+import { AntDesign, SimpleLineIcons, Ionicons, FontAwesome} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import { useState } from 'react';
-import Lanchinhos from '../components/Lanchinhos';
 import AddLanche from './AddLanche';
 
 export default function Pagamento() {
@@ -15,39 +13,40 @@ export default function Pagamento() {
     });
 
     if (fontsLoaded) {
-    return (
-        <View style={styles.container}>
-            <View style={styles.superior}>
-                <Text style={styles.topHome}></Text>
-                <TO style={styles.user}>
-                    <AntDesign name={'shoppingcart'} size={30} color='white'/>
-                </TO>
-                <TO style={styles.userr}>
-                    <Icon name={'user'} size={25} color='white' onPress={() => nav.navigate('Perfil')}/>
-                </TO>
-            </View>
+        return (
+            <View style={styles.container}>
+                <View style={styles.superior}>
+                    <Text style={styles.topHome}></Text>
+                    <TO style={styles.user}>
+                        <AntDesign name={'shoppingcart'} size={30} color='white' />
+                    </TO>
+                    <TO style={styles.userr}>
+                        <Icon name={'user'} size={25} color='white' onPress={() => nav.navigate('Perfil')} />
+                    </TO>
+                </View>
 
-            <View style={styles.meio}>
-                <ScrollView >
-                    <AddLanche/>
-                </ScrollView>
-            </View>
+                <View style={styles.meio}>
+                    <ScrollView >
+                        <AddLanche />
+                    </ScrollView>
+                </View>
 
-            <View style={styles.inferior}>
-                <TO style={styles.casa} onPress={() => nav.navigate('Casa')}>
-                    <SimpleLineIcons name={'home'} size={30} color='black' />
-                </TO>
-                <TO style={styles.menu} onPress={() => nav.navigate('Cardapio')}>
-                    <Ionicons name={'fast-food-outline'} size={30} color='black' />
-                </TO>
-                <TO style={styles.dinheiro} onPress={() => nav.navigate('ToDoList')} >
-                    <FontAwesome name={'dollar'} size={30} color='black' />
-                </TO>
-            </View>
+                <View style={styles.inferior}>
+                    <TO style={styles.casa} onPress={() => nav.navigate('Casa')}>
+                        <SimpleLineIcons name={'home'} size={30} color='black' />
+                    </TO>
+                    <TO style={styles.menu} onPress={() => nav.navigate('Cardapio')}>
+                        <Ionicons name={'fast-food-outline'} size={30} color='black' />
+                    </TO>
+                    <TO style={styles.dinheiro} onPress={() => nav.navigate('ToDoList')} >
+                        <FontAwesome name={'dollar'} size={30} color='black' />
+                    </TO>
+                </View>
 
-        </View>
-    );
-}}
+            </View>
+        );
+    }
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -85,19 +84,19 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginTop: 30
     },
-    topHome:{
+    topHome: {
         fontFamily: 'Montserrat-Regular',
         fontSize: 30,
         paddingLeft: 85,
         color: 'white',
         marginTop: 10
     },
-    user:{
+    user: {
         paddingLeft: 203.4,
         marginTop: 10,
         marginRight: 15
     },
-    userr:{
+    userr: {
         marginTop: 10
     },
 
